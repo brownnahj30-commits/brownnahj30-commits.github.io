@@ -1,0 +1,58 @@
+/* Sinciety: shared styles for the company site and every product section. */
+:root {
+  --bg: #07070b;
+  --panel: #101018;
+  --line: #24243a;
+  --text: #ececf4;
+  --dim: #9a9ab0;
+  --volt: #9d6bff;
+  --arc: #4f8cff;
+  --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 16px/1.65 var(--font); }
+a { color: var(--volt); }
+a:hover { color: #c3a6ff; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+
+header.site { border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font: 700 20px/1 var(--display); letter-spacing: .02em; }
+.brand i { width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 210deg, var(--volt), var(--arc), #2ee6f2, var(--volt)); }
+nav.site { display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; }
+nav.site a { color: var(--dim); text-decoration: none; }
+nav.site a:hover, nav.site a[aria-current="page"] { color: var(--text); }
+
+.hero { padding-block: 72px 48px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--volt); font-weight: 600; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(34px, 6vw, 56px); margin: 10px 0 16px; }
+h2 { font-size: 26px; margin: 40px 0 12px; }
+h3 { font-size: 19px; margin: 28px 0 8px; }
+.lede { font-size: 19px; color: var(--dim); max-width: 62ch; }
+.btn { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 600; text-decoration: none; background: linear-gradient(120deg, #7d4dff, var(--arc)); color: #fff; }
+.btn:hover { color: #fff; filter: brightness(1.1); }
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; padding-bottom: 64px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.card h3 { margin-top: 0; }
+.card p { color: var(--dim); margin: 0 0 16px; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; padding-bottom: 56px; }
+
+article.legal { max-width: 760px; padding-block: 48px 72px; }
+article.legal p, article.legal li { color: #d6d6e2; }
+article.legal .meta { color: var(--dim); font-size: 14px; }
+article.legal ul { padding-left: 22px; }
+article.legal table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 12px 0; }
+article.legal th, article.legal td { text-align: left; vertical-align: top; border-top: 1px solid var(--line); padding: 10px 8px; }
+article.legal th { color: var(--dim); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+
+footer.site { border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; }
+footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 24px; }
+footer.site a { color: var(--dim); }
