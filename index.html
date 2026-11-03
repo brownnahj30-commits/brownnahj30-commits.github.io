@@ -77,6 +77,17 @@
       </div><div class="story-bar" aria-hidden="true"><b></b></div></div>
     </section>
 
+    <section class="block" aria-labelledby="trailer-h" style="padding-bottom:0"><div class="wrap">
+      <div class="eyebrow reveal">The trailer</div>
+      <h2 id="trailer-h" class="reveal">Clipciety in <span class="grad">24 seconds</span></h2>
+      <div class="cinema reveal">
+        <video muted loop playsinline preload="metadata" poster="assets/video/clipciety-trailer.jpg" aria-label="Clipciety trailer">
+          <source src="assets/video/clipciety-trailer.mp4" type="video/mp4">
+        </video>
+        <button class="cinema-play" type="button"><b>▶</b>Watch with sound</button>
+      </div>
+    </div></section>
+
     <section class="block" aria-labelledby="why" style="padding-top:0"><div class="wrap">
       <div class="eyebrow reveal">How we build</div>
       <h2 id="why" class="reveal">Fast. Private. <span class="grad">Yours.</span></h2>
@@ -104,6 +115,7 @@
 
   <script src="assets/lenis.min.js"></script>
   <script src="assets/site.js"></script>
+  <script src="assets/sound.js"></script>
   <script type="module">
     import { startHero } from './assets/hero3d.js';
     startHero(document.getElementById('scene3d'), { intro: window.SINCIETY_INTRO });

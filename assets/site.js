@@ -11,6 +11,7 @@
   function decode(el, dur = 900) {
     if (reduced || el.dataset.decoded) return;
     el.dataset.decoded = '1';
+    dispatchEvent(new CustomEvent('sinciety:decode'));
     const final = el.textContent;
     const start = performance.now();
     (function step(now) {
@@ -90,6 +91,29 @@
     addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+
+  // ---------- Trailer player: silent preview loop in view; click to watch with sound ----------
+  document.querySelectorAll('.cinema').forEach((box) => {
+    const v = box.querySelector('video'), play = box.querySelector('.cinema-play');
+    if (!v) return;
+    let full = false;
+    if (!reduced && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        if (full) return;
+        if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
+      }, { threshold: 0.35 }).observe(box);
+    }
+    const duck = (d) => dispatchEvent(new CustomEvent('sinciety:duck', { detail: d }));
+    play && play.addEventListener('click', () => {
+      full = true; box.classList.add('playing');
+      v.muted = false; v.loop = false; v.controls = true; v.currentTime = 0;
+      v.play().catch(() => {});
+    });
+    v.addEventListener('play', () => { if (!v.muted) duck(true); });
+    v.addEventListener('volumechange', () => duck(!v.muted && !v.paused));
+    v.addEventListener('pause', () => duck(false));
+    v.addEventListener('ended', () => { duck(false); full = false; box.classList.remove('playing'); v.controls = false; v.muted = true; v.loop = true; v.play().catch(() => {}); });
+  });
 
   if (reduced) return;
 

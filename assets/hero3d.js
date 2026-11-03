@@ -19,12 +19,13 @@ const PALETTES = [
   [0x3dffa8, 0x2ee6f2, 0x9d6bff],  // post: green go
 ];
 
-export function startHero(canvas, { orb = true, density = 1, intro = false } = {}) {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+export function startHero(canvas, { orb = true, density = 1, intro = false, manual = false, offsetX = null } = {}) {
+  // manual: no animation loop; the caller drives frames with api.render(seconds) (used to render the trailer).
+  const reduced = !manual && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const small = innerWidth < 760;
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance', preserveDrawingBuffer: manual });
   } catch {
     canvas.remove();          // no WebGL: the CSS gradient background still looks right
     return;
@@ -172,7 +173,7 @@ export function startHero(canvas, { orb = true, density = 1, intro = false } = {
     bloom.resolution.set(w / 2, h / 2);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    world.position.x = w > 900 && orb ? 1.9 : 0;    // orb sits beside the headline on wide screens
+    world.position.x = offsetX ?? (w > 900 && orb ? 1.9 : 0);    // orb sits beside the headline on wide screens
   }
   addEventListener('resize', resize);
   resize();
@@ -181,8 +182,9 @@ export function startHero(canvas, { orb = true, density = 1, intro = false } = {
   const introDur = 3.2;
   const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 4);
   let running = true, raf = 0;
+  let manualT = 0;
   function frame() {
-    const t = clock.getElapsedTime();
+    const t = manual ? manualT : clock.getElapsedTime();
     eased.x += (pointer.x - eased.x) * 0.05;
     eased.y += (pointer.y - eased.y) * 0.05;
     eased.scroll += (scrollProgress() - eased.scroll) * 0.08;
@@ -217,13 +219,25 @@ export function startHero(canvas, { orb = true, density = 1, intro = false } = {
     film.uniforms.uFade.value = intro && !reduced ? Math.min(1, t / 0.6) : 1;
 
     composer.render();
-    if (running && !reduced) raf = requestAnimationFrame(frame);
+    if (running && !reduced && !manual) raf = requestAnimationFrame(frame);
   }
   frame();
 
+  const api = {
+    render(t) { manualT = t; frame(); const gl = renderer.getContext(); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4)); },
+    chapter(index) { dispatchEvent(new CustomEvent('sinciety:chapter', { detail: { index } })); },
+    pointer(x, y) { pointer.x = x; pointer.y = y; },
+    bloom,
+    world,
+  };
+  window.__hero = api;
+  if (manual) return api;
+
   document.addEventListener('visibilitychange', () => {
+    if (manual) return;
     running = !document.hidden;
     cancelAnimationFrame(raf);
     if (running && !reduced) raf = requestAnimationFrame(frame);
   });
+  return api;
 }
