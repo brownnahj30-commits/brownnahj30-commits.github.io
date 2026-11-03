@@ -150,6 +150,21 @@
     if (!on) return;
     for (let k = 0; k < 10; k++) setTimeout(() => tick(0.02), k * 55 + Math.random() * 30);
   });
+  // distant explosions in the home-page battlefield video
+  function rumble() {
+    if (!on) return;
+    const t = ctx.currentTime;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(70, t); o.frequency.exponentialRampToValueAtTime(28, t + 1.6);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.32, t + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+    o.connect(g); out(g, 0.5); o.start(t); o.stop(t + 2.3);
+    const src = ctx.createBufferSource(); src.buffer = noiseBuf;
+    const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(900, t); f.frequency.exponentialRampToValueAtTime(120, t + 1.8);
+    const ng = ctx.createGain(); ng.gain.setValueAtTime(0.0001, t); ng.gain.exponentialRampToValueAtTime(0.16, t + 0.03); ng.gain.exponentialRampToValueAtTime(0.0001, t + 1.9);
+    src.connect(f).connect(ng); out(ng, 0.7); src.start(t); src.stop(t + 2);
+  }
+  addEventListener('sinciety:blast', rumble);
+
   // let the trailer take over: duck the ambient while a video plays with sound
   addEventListener('sinciety:duck', (e) => {
     if (!ctx) return;

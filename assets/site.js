@@ -120,6 +120,7 @@
   // ---------- Smooth scrolling ----------
   if (window.Lenis) {
     const lenis = new window.Lenis({ duration: 1.25, easing: (t) => 1 - Math.pow(1 - t, 4) });
+    window.__lenis = lenis;
     (function raf(time) { lenis.raf(time); requestAnimationFrame(raf); })(performance.now());
     document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
