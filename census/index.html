@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DCUO Census by Sinciety</title>
+  <meta name="description" content="A community census app for DC Universe Online players, in development by Sinciety. Unofficial fan project.">
+  <meta name="theme-color" content="#05060d">
+  <link rel="icon" href="../clipciety/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../assets/universe.css">
+  <style>
+    .census { --gold: #ffd27a; --ice: #7fb4ff; background: radial-gradient(1100px 800px at 70% 40%, #0c1330 0%, #05060d 70%); }
+    .c-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .c-hero { position: relative; z-index: 1; min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding-top: 90px; }
+    .c-hero .u-kicker { color: var(--gold); }
+    .c-hero .u-kicker b { color: var(--ice); }
+    .c-title { margin: 16px 0 0; font: 700 clamp(56px, 11vw, 170px)/.88 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+    .c-title span { display: block; background: linear-gradient(180deg, #fff 20%, #ffe3a6 60%, #c79a3c); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 30px rgba(255,200,90,.3)); }
+    .c-title small { display: block; font-size: .3em; letter-spacing: .5em; margin-top: .3em; color: var(--ice); -webkit-text-fill-color: var(--ice); filter: drop-shadow(0 0 14px rgba(127,180,255,.6)); }
+    .c-scan { position: fixed; left: 0; right: 0; height: 1px; top: 0; z-index: 0; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255,210,122,.5), transparent); box-shadow: 0 0 18px rgba(255,210,122,.6); animation: cscan 6s linear infinite; }
+    @keyframes cscan { from { transform: translateY(0) } to { transform: translateY(100vh) } }
+    .c-section { position: relative; z-index: 1; padding-block: clamp(80px, 11vw, 140px); }
+    .c-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; margin-top: 46px; }
+    .c-card { position: relative; padding: 26px; border-radius: 18px; background: rgba(10,14,32,.6); border: 1px solid rgba(127,180,255,.18); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .c-card::before { content: ""; position: absolute; left: 22px; top: -1px; width: 50px; height: 1px; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+    .c-card h3 { text-transform: uppercase; font-size: 22px; margin: 10px 0 8px; }
+    .c-card p { color: #c2c8dc; margin: 0; }
+    .c-card .u-num { color: var(--gold); }
+    .c-disclaimer { margin-top: 56px; padding: 18px 20px; border-left: 2px solid var(--gold); background: rgba(255,210,122,.05); color: #aab0c4; font-size: 14px; max-width: 760px; }
+    .c-btn { background: linear-gradient(120deg, #ffd27a, #ffb02e 50%, #7fb4ff); color: #05060d; box-shadow: 0 12px 44px -10px rgba(255,210,122,.7); }
+    .c-btn:hover { color: #05060d; }
+    .census .u-eyebrow { color: var(--ice); }
+    .census .u-eyebrow span { color: var(--gold); border-color: rgba(255,210,122,.4); }
+    @media (max-width: 760px) { .c-hero { align-content: end; padding-bottom: 60px; } }
+    @media (prefers-reduced-motion: reduce) { .c-scan { display: none; } }
+  </style>
+</head>
+<body class="home census">
+  <canvas class="c-canvas" aria-hidden="true"></canvas>
+  <div class="c-scan" aria-hidden="true"></div>
+
+  <header class="site"><div class="wrap">
+    <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
+    <nav class="site" aria-label="Main">
+      <a href="../">Hub</a>
+      <a href="#about">About</a>
+      <a href="#notify">Get notified</a>
+    </nav>
+  </div></header>
+
+  <main>
+    <section class="wrap c-hero" aria-labelledby="c-title">
+      <div class="u-kicker">A Sinciety app <b>·</b> In development</div>
+      <h1 id="c-title" class="c-title"><span>DCUO</span><small>Census</small></h1>
+      <p class="u-statement">A community census for DC Universe Online players. Every player counted, and the whole community in one view.</p>
+      <div class="actions">
+        <a class="btn c-btn" href="#notify">Get notified</a>
+        <a class="btn ghost" href="#about">What it is</a>
+      </div>
+    </section>
+
+    <section class="c-section" id="about" aria-labelledby="about-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>01</span> About</div>
+        <h2 id="about-h" class="u-title">Counting the community</h2>
+        <p class="u-lede">DCUO Census is a fan-made app for the DC Universe Online community. It's being built now, and we'll share the details here as it takes shape.</p>
+        <div class="c-grid">
+          <div class="c-card"><span class="u-num">I</span><h3>Made by a player</h3><p>Built by someone who plays, for the people who play.</p></div>
+          <div class="c-card"><span class="u-num">II</span><h3>Community first</h3><p>A census is only as good as the people in it. It's designed around players taking part.</p></div>
+          <div class="c-card"><span class="u-num">III</span><h3>In development</h3><p>It isn't released yet. Get notified to hear when it's ready to try.</p></div>
+        </div>
+        <p class="c-disclaimer">DCUO Census is an unofficial fan project by Sinciety. It is not affiliated with, endorsed by, or sponsored by Daybreak Game Company, Warner Bros. or DC. DC Universe Online and related names are trademarks of their respective owners.</p>
+      </div>
+    </section>
+
+    <section class="c-section" id="notify" aria-labelledby="notify-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>02</span> Get notified</div>
+        <h2 id="notify-h" class="u-title">Be counted first</h2>
+        <p class="u-lede">Want to hear when DCUO Census is ready, or help test it? Send us a message.</p>
+        <div class="actions"><a class="btn c-btn" href="mailto:team.sinciety@gmail.com?subject=DCUO%20Census">Email team.sinciety@gmail.com</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="u-footer">
+    <div class="u-footer-mark" aria-hidden="true">CENSUS</div>
+    <div class="wrap u-footer-grid">
+      <div>
+        <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
+        <p class="u-footer-tag">DCUO Census is an unofficial fan app in development by Sinciety.</p>
+        <a class="u-mail" href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a>
+      </div>
+      <nav aria-label="Products"><h4>Products</h4><a href="../sinciety-online/">Sinciety Online</a><a href="../clipciety/">Clipciety</a><a href="./">DCUO Census</a></nav>
+      <nav aria-label="Sinciety"><h4>Sinciety</h4><a href="../">Hub</a><a href="../#contact">Contact</a></nav>
+    </div>
+    <div class="wrap u-footer-base"><span>© 2026 Sinciety</span><span class="u-status-line"><i></i>Scanning</span><a href="#" class="u-top">Back to top ↑</a></div>
+  </footer>
+
+  <script>document.querySelectorAll('.c-card, .u-title, .u-lede, .c-disclaimer').forEach((el) => el.classList.add('reveal'));</script>
+  <script src="../assets/lenis.min.js"></script>
+  <script src="../assets/site.js"></script>
+  <script src="../assets/sound.js"></script>
+  <script src="../assets/census-fx.js"></script>
+  <script>
+    startCensusFx(document.querySelector('.c-canvas'));
+    const h = document.querySelector('header.site');
+    addEventListener('scroll', () => h.classList.toggle('solid', scrollY > 80), { passive: true });
+  </script>
+</body>
+</html>

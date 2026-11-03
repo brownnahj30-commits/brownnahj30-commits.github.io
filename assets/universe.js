@@ -144,8 +144,9 @@
   intro
     .to(bars, { scaleY: 1, duration: 1.8, ease: 'expo.inOut' }, 0.15)
     .from('.u-poster img', { scale: 1.18, duration: 3.2, ease: 'power2.out' }, 0)
-    .from('.u-brand .ch', { yPercent: 110, rotateX: -80, opacity: 0, filter: 'blur(14px)', stagger: 0.06, duration: 1.4 }, 0.7)
+    .from('.u-brand .ch', { yPercent: 110, rotateX: -80, opacity: 0, stagger: 0.06, duration: 1.4, clearProps: 'transform,opacity', onComplete: () => document.querySelectorAll('.u-brand').forEach((b) => b.classList.add('forged')) }, 0.7)
     .from('.u-kicker', { opacity: 0, y: 18, letterSpacing: '0.8em', duration: 1.4 }, 1.0)
+    .from('.u-brand-sub', { opacity: 0, letterSpacing: '1.4em', duration: 1.6 }, 1.2)
     .from('.u-statement', { opacity: 0, y: 26, duration: 1.2 }, 1.25)
     .from('.u-hero-copy .actions > *', { opacity: 0, y: 22, stagger: 0.1, duration: 1 }, 1.4)
     .from('.u-hud > span', { opacity: 0, duration: 1.2, stagger: 0.12, ease: 'power1.out' }, 1.5)
@@ -197,7 +198,7 @@
     G.fromTo(p, { clipPath: 'inset(18% 8% 18% 8% round 24px)', y: 60 }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', y: 0, ease: 'power2.out', scrollTrigger: { trigger: p, start: 'top 92%', end: 'top 45%', scrub: 0.8 } });
     G.from(p.querySelector('.u-project-media img'), { scale: 1.3, ease: 'none', scrollTrigger: { trigger: p, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  G.from('.u-trailer .cinema', { y: 80, scale: 0.92, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.u-trailer', start: 'top 90%', end: 'top 45%', scrub: 0.8 } });
+  if (document.querySelector('.u-trailer')) G.from('.u-trailer .cinema', { y: 80, scale: 0.92, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.u-trailer', start: 'top 90%', end: 'top 45%', scrub: 0.8 } });
 
   // ---------- vision: parallax world + words light up as you read ----------
   G.fromTo('.u-vision-bg', { yPercent: -10, scale: 1.12 }, { yPercent: 10, scale: 1, ease: 'none', scrollTrigger: { trigger: '.u-vision', start: 'top bottom', end: 'bottom top', scrub: true } });

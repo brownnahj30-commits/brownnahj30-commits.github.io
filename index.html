@@ -4,208 +4,137 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sinciety</title>
-  <meta name="description" content="Sinciety is building the next generation of superhero gaming, and the creator tools that share every heroic moment. Home of Clipciety.">
+  <meta name="description" content="Sinciety is an independent studio building games and creator tools: Sinciety Online, Clipciety and a census app for DC Universe Online players.">
   <meta name="theme-color" content="#06060a">
   <meta property="og:title" content="Sinciety">
-  <meta property="og:description" content="A new universe of heroes is rising.">
+  <meta property="og:description" content="One studio. Many worlds.">
   <meta property="og:image" content="https://sinciety.org/assets/media/battle-poster.jpg">
   <link rel="icon" href="clipciety/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
-  <link rel="preload" as="image" href="assets/media/battle-poster.jpg" media="(min-width: 761px)">
-  <link rel="preload" as="image" href="assets/media/battle-poster-m.jpg" media="(max-width: 760px)">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="assets/universe.css">
+  <link rel="stylesheet" href="assets/hub.css">
 </head>
-<body class="home">
+<body class="home hub">
+  <canvas id="scene3d" aria-hidden="true"></canvas>
+  <div id="intro" aria-hidden="true"><div class="intro-word">Sinciety</div><div class="intro-sub">One studio · Many worlds</div></div>
+
   <header class="site"><div class="wrap">
     <a class="brand" href="./"><i aria-hidden="true"></i>Sinciety</a>
     <nav class="site" aria-label="Main">
-      <a href="#universe">Universe</a>
-      <a href="#projects">Projects</a>
+      <a href="#products">Products</a>
       <a href="#vision">Vision</a>
-      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div></header>
 
   <main>
-    <!-- ================= HERO: the battlefield ================= -->
-    <section class="u-hero" id="top" aria-labelledby="hero-title">
-      <div class="u-stage" aria-hidden="true">
-        <picture class="u-poster">
-          <source media="(max-width: 760px)" srcset="assets/media/battle-poster-m.jpg">
-          <img src="assets/media/battle-poster.jpg" alt="" fetchpriority="high">
-        </picture>
-        <video class="u-video" muted playsinline loop preload="none"
-          data-src-desktop="assets/media/battle.mp4" data-src-desktop-webm="assets/media/battle.webm"
-          data-src-mobile="assets/media/battle-m.mp4" data-src-mobile-webm="assets/media/battle-m.webm"></video>
-        <canvas class="u-embers"></canvas>
-        <div class="u-shade"></div>
-        <div class="u-flash"></div>
-        <div class="u-bars"><i></i><i></i></div>
-      </div>
-
-      <div class="u-hud" aria-hidden="true">
-        <span class="hud-tl">SECTOR 07 <b>//</b> NEOS CITY</span>
-        <span class="hud-tr"><i class="dot"></i>LIVE FEED <b class="hud-clock">00:00:00</b></span>
-        <span class="hud-bl">THREAT LEVEL <span class="meter"><i></i></span> <b class="hud-threat">EXTREME</b></span>
-        <span class="hud-br">RIFT ACTIVITY <b class="hud-rift">97.4%</b></span>
-      </div>
-
-      <div class="wrap u-hero-copy">
-        <div class="u-kicker" data-split>Superhero gaming <b>·</b> Creator tools</div>
-        <h1 id="hero-title" class="u-brand" aria-label="Sinciety"><span class="u-brand-text" data-chars>SINCIETY</span></h1>
-        <p class="u-statement">A new universe of heroes is rising. We're building the next generation of superhero games, and the tools that let creators share every heroic moment.</p>
-        <div class="actions">
-          <a class="btn u-btn" href="#universe">Enter the universe</a>
-          <a class="btn ghost" href="clipciety/">Get Clipciety</a>
-        </div>
-      </div>
-      <a class="u-scroll" href="#universe" aria-label="Scroll to the universe"><span></span></a>
-    </section>
-
-    <!-- ================= OUR UNIVERSE ================= -->
-    <section class="u-section u-universe" id="universe" aria-labelledby="universe-h">
-      <div class="u-energy" aria-hidden="true"></div>
-      <div class="wrap u-intro">
-        <div class="u-eyebrow"><span>01</span> Our universe</div>
-        <h2 id="universe-h" class="u-title" data-words>The night the sky tore open</h2>
-        <p class="u-lede">Neos City was the brightest city on Earth, until a rift split the sky and an army poured through. From the wreckage, a new generation of heroes rose. This is the Sinciety universe, and these are its first legends.</p>
-      </div>
-
-      <div class="u-roster" data-roster>
-        <div class="u-track">
-          <article class="u-hero-card" style="--c:#36e0ff; --c2:#1a6dff" data-tilt="6">
-            <div class="u-art"><img src="assets/media/hero-voltaine.jpg" alt="Voltaine, a hero crackling with cyan lightning, standing on rubble against a storm-blue sky" loading="lazy" decoding="async"></div>
-            <div class="u-card-body">
-              <div class="u-class">Storm Engine</div>
-              <h3>Voltaine</h3>
-              <p>An engineer who caught a bolt from the rift and became the storm. She powers the city's last grid by hand.</p>
-              <dl class="u-stats"><div><dt>Power</dt><dd style="--v:.92"></dd></div><div><dt>Speed</dt><dd style="--v:.88"></dd></div><div><dt>Control</dt><dd style="--v:.61"></dd></div></dl>
-            </div>
-          </article>
-          <article class="u-hero-card" style="--c:#ffb02e; --c2:#ff6a00" data-tilt="6">
-            <div class="u-art"><img src="assets/media/hero-solward.jpg" alt="Solward, a hero with a blazing golden fist, silhouetted against a gold sky" loading="lazy" decoding="async"></div>
-            <div class="u-card-body">
-              <div class="u-class">The Last Light</div>
-              <h3>Solward</h3>
-              <p>Absorbs sunlight by day and releases it as raw force at night. The first to stand in front of the rift. The last to leave.</p>
-              <dl class="u-stats"><div><dt>Power</dt><dd style="--v:.97"></dd></div><div><dt>Speed</dt><dd style="--v:.55"></dd></div><div><dt>Control</dt><dd style="--v:.74"></dd></div></dl>
-            </div>
-          </article>
-          <article class="u-hero-card" style="--c:#b46bff; --c2:#5a2dff" data-tilt="6">
-            <div class="u-art"><img src="assets/media/hero-vanta.jpg" alt="Vanta, a hero with both arms raised, bending violet gravity" loading="lazy" decoding="async"></div>
-            <div class="u-card-body">
-              <div class="u-class">Void Sentinel</div>
-              <h3>Vanta</h3>
-              <p>Bends gravity like cloth. Pulled drop ships out of the sky on the first night, and has been hunting what's behind the rift ever since.</p>
-              <dl class="u-stats"><div><dt>Power</dt><dd style="--v:.9"></dd></div><div><dt>Speed</dt><dd style="--v:.7"></dd></div><div><dt>Control</dt><dd style="--v:.95"></dd></div></dl>
-            </div>
-          </article>
-          <article class="u-hero-card" style="--c:#ff5a2e; --c2:#ff1e3c" data-tilt="6">
-            <div class="u-art"><img src="assets/media/hero-emberwake.jpg" alt="Emberwake, a hero holding a hexagonal fire shield against a burning red sky" loading="lazy" decoding="async"></div>
-            <div class="u-card-body">
-              <div class="u-class">The Burning Shield</div>
-              <h3>Emberwake</h3>
-              <p>A firefighter who walked into the first blast and walked back out carrying it. Her hex shield has never broken.</p>
-              <dl class="u-stats"><div><dt>Power</dt><dd style="--v:.8"></dd></div><div><dt>Speed</dt><dd style="--v:.62"></dd></div><div><dt>Control</dt><dd style="--v:.86"></dd></div></dl>
-            </div>
-          </article>
-          <div class="u-roster-end">
-            <div class="u-eyebrow">More heroes</div>
-            <p>The roster is growing. <br>Every legend starts somewhere.</p>
-          </div>
-        </div>
-      </div>
-      <p class="wrap u-note">Concept heroes from the Sinciety universe. Characters, art and story are original works in development.</p>
-    </section>
-
-    <!-- ================= OUR PROJECTS ================= -->
-    <section class="u-section u-projects" id="projects" aria-labelledby="projects-h">
-      <div class="u-energy" aria-hidden="true"></div>
+    <!-- ================= HUB HERO ================= -->
+    <section class="h-hero" id="top" aria-labelledby="hub-title">
       <div class="wrap">
-        <div class="u-eyebrow"><span>02</span> Our projects</div>
-        <h2 id="projects-h" class="u-title" data-words>What we're building</h2>
-
-        <div class="u-projects-grid">
-          <article class="u-project u-project-game" data-tilt="4">
-            <div class="u-project-media">
-              <img src="assets/media/vision.jpg" alt="" loading="lazy" decoding="async">
-              <video muted loop playsinline preload="none" data-lazy-src="assets/media/battle.mp4"></video>
-            </div>
-            <div class="u-project-body">
-              <div class="u-status"><i></i>In development</div>
-              <h3>The Sinciety Universe</h3>
-              <p>A superhero game set in Neos City. Rise as a new hero, master your powers, and fight alongside other players in battles built to feel like the last act of a blockbuster.</p>
-              <div class="tags"><span class="tag">Superhero</span><span class="tag">Multiplayer</span><span class="tag">Original universe</span></div>
-              <a class="u-link" href="#community">Follow development →</a>
-            </div>
-          </article>
-
-          <article class="u-project u-project-clip" data-tilt="4">
-            <div class="u-project-media">
-              <img src="assets/media/clipciety-card.jpg" alt="" loading="lazy" decoding="async">
-              <video muted loop playsinline preload="none" data-lazy-src="assets/video/clipciety-trailer.mp4"></video>
-            </div>
-            <div class="u-project-body">
-              <div class="u-status live"><i></i>Available now · Windows</div>
-              <h3>Clipciety</h3>
-              <p>The AI clipping app for streamers. It catches your best moments live, edits them into vertical clips with captions, and posts the ones you choose to TikTok and YouTube Shorts.</p>
-              <div class="tags"><span class="tag">Live clipping</span><span class="tag">Auto captions</span><span class="tag">TikTok</span><span class="tag">YouTube Shorts</span></div>
-              <div class="actions" style="margin-top:22px">
-                <a class="btn" href="clipciety/">Explore Clipciety</a>
-                <a class="btn ghost" href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download</a>
-              </div>
-            </div>
-          </article>
+        <div class="u-kicker">Independent studio <b>·</b> Games <b>·</b> Creator tools</div>
+        <h1 id="hub-title" class="u-brand" aria-label="Sinciety"><span class="u-brand-text" data-chars>SINCIETY</span></h1>
+        <p class="h-tag" data-words>One studio. Many worlds.</p>
+        <p class="u-statement">We build games and tools for the people who play, stream and create. Every product gets a world of its own.</p>
+        <div class="actions">
+          <a class="btn u-btn" href="#products">Explore our worlds</a>
+          <a class="btn ghost" href="#contact">Contact us</a>
         </div>
+      </div>
+      <nav class="h-quick wrap" aria-label="Products">
+        <a href="sinciety-online/" style="--c:#ff7a2e"><span>01</span>Sinciety Online</a>
+        <a href="clipciety/" style="--c:#7fe9ff"><span>02</span>Clipciety</a>
+        <a href="census/" style="--c:#ffd27a"><span>03</span>DCUO Census</a>
+      </nav>
+    </section>
 
-        <div class="u-trailer">
-          <div class="u-eyebrow">Clipciety trailer</div>
-          <div class="cinema">
-            <video muted loop playsinline preload="none" poster="assets/video/clipciety-trailer.jpg" aria-label="Clipciety trailer">
-              <source src="assets/video/clipciety-trailer.mp4" type="video/mp4">
-            </video>
-            <button class="cinema-play" type="button"><b>▶</b>Watch with sound</button>
+    <!-- ================= PRODUCT PORTALS ================= -->
+    <section class="h-products" id="products" aria-labelledby="products-h">
+      <div class="wrap h-products-head">
+        <div class="u-eyebrow"><span>01</span> Our worlds</div>
+        <h2 id="products-h" class="u-title" data-words>Choose your world</h2>
+      </div>
+
+      <div class="h-stack">
+        <article class="h-panel" style="--c:#ff7a2e; --c2:#9d6bff" aria-labelledby="p1">
+          <div class="h-media">
+            <picture><source media="(max-width: 760px)" srcset="assets/media/battle-poster-m.jpg"><img src="assets/media/battle-poster.jpg" alt="" loading="lazy" decoding="async"></picture>
+            <video muted loop playsinline preload="none" data-desktop="assets/media/battle" data-mobile="assets/media/battle-m"></video>
           </div>
-        </div>
+          <div class="h-panel-shade"></div>
+          <div class="wrap h-panel-copy">
+            <div class="h-index">01 / 03</div>
+            <div class="u-status"><i></i>In development · Game</div>
+            <h3 id="p1">Sinciety Online</h3>
+            <p>An original superhero game. The sky over Neos City has torn open, and a new generation of heroes is rising to meet it.</p>
+            <div class="actions"><a class="btn h-btn" href="sinciety-online/">Enter Sinciety Online →</a></div>
+          </div>
+        </article>
+
+        <article class="h-panel" style="--c:#7fe9ff; --c2:#9d6bff" aria-labelledby="p2">
+          <div class="h-media">
+            <img src="assets/media/clipciety-card.jpg" alt="" loading="lazy" decoding="async">
+            <video muted loop playsinline preload="none" data-src="assets/media/clipciety-loop.mp4"></video>
+          </div>
+          <div class="h-panel-shade"></div>
+          <div class="wrap h-panel-copy">
+            <div class="h-index">02 / 03</div>
+            <div class="u-status live"><i></i>Available now · Windows</div>
+            <h3 id="p2">Clipciety</h3>
+            <p>The AI clipping app for streamers. It catches your best moments live, edits them into vertical clips with captions, and posts the ones you choose.</p>
+            <div class="actions"><a class="btn h-btn" href="clipciety/">Explore Clipciety →</a><a class="btn ghost" href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download</a></div>
+          </div>
+        </article>
+
+        <article class="h-panel h-panel-census" style="--c:#ffd27a; --c2:#4f8cff" aria-labelledby="p3">
+          <div class="h-media"><canvas class="census-canvas" aria-hidden="true"></canvas></div>
+          <div class="h-panel-shade"></div>
+          <div class="wrap h-panel-copy">
+            <div class="h-index">03 / 03</div>
+            <div class="u-status"><i></i>In development · App</div>
+            <h3 id="p3">DCUO Census</h3>
+            <p>A community census app for DC Universe Online players. An unofficial fan project, not affiliated with Daybreak Games or DC.</p>
+            <div class="actions"><a class="btn h-btn" href="census/">Learn more →</a></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- ================= OUR VISION ================= -->
+    <!-- ================= VISION ================= -->
     <section class="u-section u-vision" id="vision" aria-labelledby="vision-h">
       <div class="u-vision-bg" aria-hidden="true"><img src="assets/media/vision.jpg" alt="" loading="lazy" decoding="async"></div>
       <div class="wrap">
-        <div class="u-eyebrow"><span>03</span> Our vision</div>
-        <h2 id="vision-h" class="u-vision-line" data-scrub-words>We're building the next generation of superhero gaming. Worlds with cinematic scale, heroes that feel like yours, and a community that shares every legendary moment.</h2>
+        <div class="u-eyebrow"><span>02</span> Our vision</div>
+        <h2 id="vision-h" class="u-vision-line" data-scrub-words>Every product deserves a world of its own. We build games and tools with cinematic ambition, for the people who play, stream and create.</h2>
         <div class="u-pillars">
-          <div class="u-pillar"><span class="u-num">I</span><h3>Cinematic scale</h3><p>Battles that fill the sky. Every fight should feel like the final act of a blockbuster, not a menu.</p></div>
-          <div class="u-pillar"><span class="u-num">II</span><h3>Heroes worth becoming</h3><p>Original characters with real stories, and powers that change how you move, fight and think.</p></div>
-          <div class="u-pillar"><span class="u-num">III</span><h3>Built with creators</h3><p>The best moments deserve to be seen. That's why we build creator tools like Clipciety alongside our games.</p></div>
+          <div class="u-pillar"><span class="u-num">I</span><h3>Worlds, not websites</h3><p>Each product gets its own look, sound and story, so it feels like a place you visit, not a page you skim.</p></div>
+          <div class="u-pillar"><span class="u-num">II</span><h3>Players and creators</h3><p>We make games to play and tools that help creators share them. Each side makes the other better.</p></div>
+          <div class="u-pillar"><span class="u-num">III</span><h3>Independent and ambitious</h3><p>A small studio with big ideas, building in the open and shipping real things.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ================= COMMUNITY ================= -->
-    <section class="u-section u-community" id="community" aria-labelledby="community-h">
+    <!-- ================= CONTACT ================= -->
+    <section class="u-section u-community" id="contact" aria-labelledby="contact-h">
       <div class="u-energy" aria-hidden="true"></div>
       <div class="wrap">
-        <div class="u-eyebrow"><span>04</span> Community</div>
-        <h2 id="community-h" class="u-title" data-words>Join the Sinciety</h2>
-        <p class="u-lede">Every universe starts with its first believers. Get involved early, help shape the heroes, and be part of the story from day one.</p>
+        <div class="u-eyebrow"><span>03</span> Get involved</div>
+        <h2 id="contact-h" class="u-title" data-words>Join the Sinciety</h2>
+        <p class="u-lede">Follow what we're building, try our products early, or work with us.</p>
         <div class="u-join">
-          <a class="u-join-card glass" data-tilt href="mailto:team.sinciety@gmail.com?subject=Join%20the%20Sinciety%20founders%20list">
-            <span class="u-join-ic">✦</span><h3>Founders list</h3><p>Be first to hear about the game, playtests and new heroes.</p><span class="u-go">Email us to join →</span>
+          <a class="u-join-card glass" data-tilt href="mailto:team.sinciety@gmail.com?subject=Keep%20me%20updated">
+            <span class="u-join-ic">✦</span><h3>Stay in the loop</h3><p>News on Sinciety Online, Clipciety and the DCUO Census.</p><span class="u-go">Email us →</span>
           </a>
           <a class="u-join-card glass" data-tilt href="clipciety/">
-            <span class="u-join-ic">▶</span><h3>Streamers &amp; creators</h3><p>Clip your best moments with Clipciety and help shape what we build next.</p><span class="u-go">Get Clipciety →</span>
+            <span class="u-join-ic">▶</span><h3>Streamers &amp; creators</h3><p>Clip your best moments with Clipciety.</p><span class="u-go">Get Clipciety →</span>
           </a>
           <a class="u-join-card glass" data-tilt href="mailto:team.sinciety@gmail.com?subject=Partnership%20%2F%20press">
             <span class="u-join-ic">◆</span><h3>Partners &amp; press</h3><p>Collaborations, press and business enquiries.</p><span class="u-go">Get in touch →</span>
           </a>
           <a class="u-join-card glass" data-tilt href="mailto:team.sinciety@gmail.com?subject=Working%20with%20Sinciety">
-            <span class="u-join-ic">⚡</span><h3>Build with us</h3><p>Artists, developers and storytellers who want to build a universe.</p><span class="u-go">Introduce yourself →</span>
+            <span class="u-join-ic">⚡</span><h3>Build with us</h3><p>Artists, developers and storytellers.</p><span class="u-go">Introduce yourself →</span>
           </a>
         </div>
       </div>
@@ -217,11 +146,11 @@
     <div class="wrap u-footer-grid">
       <div>
         <a class="brand" href="./"><i aria-hidden="true"></i>Sinciety</a>
-        <p class="u-footer-tag">Superhero gaming and creator tools.</p>
+        <p class="u-footer-tag">One studio. Many worlds.</p>
         <a class="u-mail" href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a>
       </div>
-      <nav aria-label="Explore"><h4>Explore</h4><a href="#universe">Universe</a><a href="#projects">Projects</a><a href="#vision">Vision</a><a href="#community">Community</a></nav>
-      <nav aria-label="Clipciety"><h4>Clipciety</h4><a href="clipciety/">Overview</a><a href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download</a><a href="clipciety/terms.html">Terms of Service</a><a href="clipciety/privacy.html">Privacy Policy</a></nav>
+      <nav aria-label="Products"><h4>Products</h4><a href="sinciety-online/">Sinciety Online</a><a href="clipciety/">Clipciety</a><a href="census/">DCUO Census</a></nav>
+      <nav aria-label="Legal"><h4>Legal</h4><a href="clipciety/terms.html">Clipciety Terms</a><a href="clipciety/privacy.html">Clipciety Privacy</a></nav>
     </div>
     <div class="wrap u-footer-base">
       <span>© 2026 Sinciety</span>
@@ -235,6 +164,11 @@
   <script src="assets/ScrollTrigger.min.js"></script>
   <script src="assets/site.js"></script>
   <script src="assets/sound.js"></script>
-  <script src="assets/universe.js"></script>
+  <script src="assets/census-fx.js"></script>
+  <script src="assets/hub.js"></script>
+  <script type="module">
+    import { startHero } from './assets/hero3d.js';
+    startHero(document.getElementById('scene3d'), { intro: window.SINCIETY_INTRO });
+  </script>
 </body>
 </html>

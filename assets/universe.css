@@ -26,13 +26,14 @@
 .u-bars i:first-child { top: 0; } .u-bars i:last-child { bottom: 0; }
 
 .u-hero-copy { position: relative; z-index: 2; padding-top: 70px; }
-.u-kicker { font: 600 13px/1 var(--font); letter-spacing: .34em; text-transform: uppercase; color: var(--hud); }
+.u-kicker { font: 600 13px/1.7 var(--font); letter-spacing: .34em; text-transform: uppercase; color: var(--hud); }
 .u-kicker b { color: var(--ember); font-weight: 600; }
 .u-brand { margin: 14px 0 0; font: 700 clamp(64px, 14.5vw, 232px)/.86 var(--display); letter-spacing: .02em; text-transform: uppercase; }
-.u-brand-text { display: inline-block; background: linear-gradient(180deg, #ffffff 0%, #e9ecf6 38%, #9aa3bb 62%, #f1f3fa 64%, #7c86a3 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+.u-brand-text { display: inline-block; color: #eef0f8;
   filter: drop-shadow(0 0 calc(18px + var(--flash) * 40px) rgba(255, 140, 60, calc(.15 + var(--flash) * .6))) drop-shadow(0 8px 30px rgba(0,0,0,.6)); }
-.u-brand .ch { display: inline-block; background: inherit; -webkit-background-clip: text; background-clip: text; color: transparent; will-change: transform; }
+.u-brand .ch { display: inline-block; color: #eef0f8; -webkit-text-fill-color: #eef0f8; }
+.u-brand.forged .ch { background: linear-gradient(180deg, #ffffff 0%, #e9ecf6 38%, #9aa3bb 62%, #f1f3fa 64%, #7c86a3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+html:not(.js) .u-brand .ch, .no-motion .u-brand .ch { color: #eef0f8; }
 .u-statement { max-width: 46ch; margin: 22px 0 0; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.6; color: #d9dbe6; text-shadow: 0 2px 18px rgba(0,0,0,.8); }
 .u-btn { background: linear-gradient(120deg, #ff7a2e, #ff3d6e 55%, #9d6bff); box-shadow: 0 12px 44px -10px rgba(255, 106, 46, .75); }
 .u-btn:hover { box-shadow: 0 16px 60px -10px rgba(255, 106, 46, 1); }
@@ -198,3 +199,6 @@ html:not(.js) .u-vision-line .sw, .no-motion .u-vision-line .sw { opacity: 1; }
   animation: grain .9s steps(6) infinite; }
 @keyframes grain { 0% { transform: translate(0, 0) } 20% { transform: translate(-6%, 4%) } 40% { transform: translate(5%, -7%) } 60% { transform: translate(-3%, 8%) } 80% { transform: translate(7%, 2%) } 100% { transform: translate(0, 0) } }
 @media (prefers-reduced-motion: reduce) { .u-stage::after { animation: none; } }
+
+.u-brand-sub { display: block; margin-top: .12em; font-size: .3em; letter-spacing: .62em; padding-left: .3em; color: transparent;
+  background: linear-gradient(90deg, #ffb27a, #ff7a2e 40%, #9d6bff); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 18px rgba(255,122,46,.45)); }
