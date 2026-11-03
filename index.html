@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sinciety</title>
   <meta name="description" content="Sinciety builds software for creators. Home of Clipciety, the AI clipping app for streamers.">
+  <meta name="theme-color" content="#05050a">
   <link rel="icon" href="clipciety/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <canvas id="scene3d" aria-hidden="true"></canvas>
+
   <header class="site"><div class="wrap">
     <a class="brand" href="./"><i aria-hidden="true"></i>Sinciety</a>
     <nav class="site" aria-label="Main">
@@ -20,31 +26,72 @@
 
   <main>
     <section class="hero"><div class="wrap">
-      <div class="eyebrow">Sinciety</div>
-      <h1>Software for creators</h1>
-      <p class="lede">Sinciety builds tools that take the busywork out of creating, so you can spend your time on the content itself.</p>
+      <div class="stack">
+        <div class="eyebrow reveal" data-depth="0.2">Software for creators</div>
+        <h1 class="mega" data-depth="0.5"><span class="grad">Sinciety</span></h1>
+        <div class="mega outline" aria-hidden="true" data-depth="0.9">Sinciety</div>
+      </div>
+      <p class="lede reveal" data-depth="0.25">We build tools that take the busywork out of creating, so you can spend your time on the content itself.</p>
+      <div class="actions reveal">
+        <a class="btn" href="clipciety/">Meet Clipciety →</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="scroll-cue reveal" aria-hidden="true"><span></span>Scroll</div>
     </div></section>
 
-    <section class="wrap" aria-labelledby="products">
-      <h2 id="products">Products</h2>
-      <div class="cards">
-        <div class="card">
+    <div class="marquee" aria-hidden="true"><div class="track">
+      <span>Clip</span><b>✦</b><span>Edit</span><b>✦</b><span>Caption</span><b>✦</b><span>Post</span><b>✦</b><span>Grow</span><b>✦</b><span>Repeat</span><b>✦</b>
+      <span>Clip</span><b>✦</b><span>Edit</span><b>✦</b><span>Caption</span><b>✦</b><span>Post</span><b>✦</b><span>Grow</span><b>✦</b><span>Repeat</span><b>✦</b>
+    </div></div>
+
+    <section class="block" aria-labelledby="products"><div class="wrap">
+      <div class="eyebrow reveal">Products</div>
+      <h2 id="products" class="reveal">Built for people who <span class="grad">make things</span></h2>
+      <article class="glass product reveal" data-tilt="6">
+        <div>
+          <div class="eyebrow">Available now · Windows</div>
           <h3>Clipciety</h3>
           <p>The AI clipping app for streamers. It finds your best moments while you stream, edits them into vertical clips with captions, and posts the ones you choose to TikTok and YouTube Shorts.</p>
-          <a class="btn" href="clipciety/">Learn more</a>
+          <div class="tags"><span class="tag">Live clipping</span><span class="tag">Auto captions</span><span class="tag">TikTok</span><span class="tag">YouTube Shorts</span><span class="tag">OBS</span></div>
+          <div class="actions"><a class="btn" href="clipciety/">Explore Clipciety</a></div>
         </div>
-      </div>
-    </section>
+        <div class="product-art" aria-hidden="true">
+          <div class="orbit" style="width:240px;height:240px"></div>
+          <div class="orbit" style="width:310px;height:310px;animation-duration:26s;animation-direction:reverse"></div>
+          <img src="clipciety/icon.png" alt="">
+        </div>
+      </article>
+    </div></section>
 
-    <section class="wrap" id="contact" aria-labelledby="contact-h" style="padding-bottom:64px">
-      <h2 id="contact-h">Contact</h2>
-      <p>Questions, support or business enquiries: <a href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a></p>
-    </section>
+    <section class="block" aria-labelledby="why" style="padding-top:0"><div class="wrap">
+      <div class="eyebrow reveal">How we build</div>
+      <h2 id="why" class="reveal">Fast. Private. <span class="grad">Yours.</span></h2>
+      <div class="grid3">
+        <div class="glass reveal" data-tilt><div class="icon-dot">01</div><h3>Less busywork</h3><p>Our apps handle the repetitive parts, like cutting, captioning and formatting, so you can focus on creating.</p></div>
+        <div class="glass reveal" data-tilt><div class="icon-dot">02</div><h3>Private by default</h3><p>Your content stays on your device. We don't run servers that collect your videos or your data.</p></div>
+        <div class="glass reveal" data-tilt><div class="icon-dot">03</div><h3>You stay in control</h3><p>Nothing is ever posted without your approval. Every connection can be removed in one click.</p></div>
+      </div>
+    </div></section>
+
+    <section class="block" id="contact" aria-labelledby="contact-h" style="padding-top:0"><div class="wrap">
+      <div class="glass cta reveal" data-tilt="4">
+        <div class="eyebrow">Contact</div>
+        <h2 id="contact-h" style="margin-top:14px">Let's <span class="grad">talk</span></h2>
+        <p class="sub" style="margin-inline:auto">Questions, support or business enquiries, we read everything.</p>
+        <div class="actions" style="justify-content:center"><a class="btn" href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a></div>
+      </div>
+    </div></section>
   </main>
 
   <footer class="site"><div class="wrap">
     <span>© 2026 Sinciety</span>
     <span><a href="clipciety/terms.html">Clipciety Terms</a> · <a href="clipciety/privacy.html">Clipciety Privacy</a></span>
   </div></footer>
+
+  <script src="assets/site.js"></script>
+  <script type="module">
+    import { startHero } from './assets/hero3d.js';
+    startHero(document.getElementById('scene3d'));
+  </script>
 </body>
 </html>

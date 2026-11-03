@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Clipciety by Sinciety</title>
   <meta name="description" content="Clipciety finds the best moments in your streams, edits them into vertical clips with captions, and posts the ones you choose.">
+  <meta name="theme-color" content="#05050a">
   <link rel="icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <canvas id="scene3d" aria-hidden="true"></canvas>
+
   <header class="site"><div class="wrap">
     <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
     <nav class="site" aria-label="Main">
@@ -20,32 +26,87 @@
   </div></header>
 
   <main>
-    <section class="hero"><div class="wrap">
-      <div class="eyebrow">Clipciety by Sinciety</div>
-      <h1>Your best stream moments, clipped and ready to post</h1>
-      <p class="lede">Clipciety is a desktop app for Windows that works alongside OBS. It catches the moments your chat goes wild while you stream, turns them into vertical clips with captions, and gets them ready for TikTok and YouTube Shorts. You decide what gets posted.</p>
-      <div class="actions">
-        <a class="btn" href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download for Windows</a>
-        <a class="btn ghost" href="privacy.html">How we handle your data</a>
+    <section class="wrap app-hero">
+      <div>
+        <div class="eyebrow reveal">Clipciety by Sinciety</div>
+        <h1 class="reveal">Your best stream moments, <span class="grad">clipped and ready to post</span></h1>
+        <p class="lede reveal">A desktop app for Windows that works alongside OBS. It catches the moments your chat goes wild, turns them into vertical clips with captions, and gets them ready for TikTok and YouTube Shorts. You decide what gets posted.</p>
+        <div class="actions reveal">
+          <a class="btn" href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download for Windows</a>
+          <a class="btn ghost" href="privacy.html">How we handle your data</a>
+        </div>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="phone-scene" data-scene="20">
+          <div class="phone">
+            <div class="screen">
+              <div class="clip-bg"></div>
+              <div class="clip-game"></div>
+              <div class="ui-top"><span class="live">● LIVE CLIP</span><span class="score"><b>92</b></span></div>
+              <div class="caption" id="cap"><span>NO</span> <span>WAY</span> <span>HE</span> <span>HIT</span> <span>THAT</span></div>
+            </div>
+          </div>
+          <div class="float f1"><span class="chip-live">● Chat spike</span><small>KEKW ×48 in 5s</small></div>
+          <div class="float f2">✂ Clip saved<small>last 30s from replay buffer</small></div>
+          <div class="float f3">💬 "CLIP IT"<small>chat command</small></div>
+          <div class="float f4">✓ Ready to post<small>TikTok · Shorts</small></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="track">
+      <span>Go live</span><b>✦</b><span>Chat pops off</span><b>✦</b><span>Auto clip</span><b>✦</b><span>Vertical edit</span><b>✦</b><span>Captions</span><b>✦</b><span>You approve</span><b>✦</b><span>Posted</span><b>✦</b>
+      <span>Go live</span><b>✦</b><span>Chat pops off</span><b>✦</b><span>Auto clip</span><b>✦</b><span>Vertical edit</span><b>✦</b><span>Captions</span><b>✦</b><span>You approve</span><b>✦</b><span>Posted</span><b>✦</b>
+    </div></div>
+
+    <section class="block" aria-labelledby="how"><div class="wrap">
+      <div class="eyebrow reveal">How it works</div>
+      <h2 id="how" class="reveal">Stream. We'll <span class="grad">handle the clips.</span></h2>
+      <div class="steps">
+        <div class="glass reveal" data-tilt><h3>Starts when you go live</h3><p>Clipciety connects to OBS on your PC. When your stream starts, it makes sure OBS is recording and starts watching your chat.</p></div>
+        <div class="glass reveal" data-tilt><h3>Clips the hype as it happens</h3><p>When chat explodes, or you press Clip it, Clipciety saves that moment from OBS's replay buffer and adds it to your review queue.</p></div>
+        <div class="glass reveal" data-tilt><h3>Edits automatically</h3><p>The best moments become 1080×1920 vertical videos with word-by-word captions, plus suggested titles, captions and hashtags.</p></div>
+        <div class="glass reveal" data-tilt><h3>You choose what to post</h3><p>Keep or delete each clip. Post the ones you keep to TikTok or YouTube Shorts with one click. Nothing is ever posted without you.</p></div>
       </div>
     </div></section>
 
-    <section class="wrap" aria-labelledby="how">
-      <h2 id="how">How it works</h2>
-      <div class="features">
-        <div class="card"><h3>Starts when you go live</h3><p>Clipciety connects to OBS on your PC. When your stream starts, it makes sure OBS is recording and starts watching your chat.</p></div>
-        <div class="card"><h3>Clips the hype as it happens</h3><p>When chat explodes, or you press Clip it, Clipciety saves that moment from OBS's replay buffer and adds it to your review queue.</p></div>
-        <div class="card"><h3>Edits automatically</h3><p>The best moments become 1080×1920 vertical videos with word-by-word captions, plus suggested titles, captions and hashtags.</p></div>
-        <div class="card"><h3>You choose what to post</h3><p>Keep or delete each clip. Post the ones you keep to TikTok or YouTube Shorts with one click. Nothing is ever posted without you.</p></div>
-        <div class="card"><h3>Private by design</h3><p>Your recordings and clips stay on your PC. Clipciety has no servers that store your videos.</p></div>
-        <div class="card"><h3>Works with your platforms</h3><p>Connect Twitch for live chat, and TikTok or YouTube to post. Disconnect any account from the app at any time.</p></div>
+    <section class="block" aria-labelledby="trust" style="padding-top:0"><div class="wrap">
+      <div class="grid3">
+        <div class="glass reveal" data-tilt><div class="icon-dot">🔒</div><h3>Private by design</h3><p>Your recordings and clips stay on your PC. Clipciety has no servers that store your videos.</p></div>
+        <div class="glass reveal" data-tilt><div class="icon-dot">⚡</div><h3>Works with your platforms</h3><p>Connect Twitch for live chat, and TikTok or YouTube to post. Disconnect any account from the app at any time.</p></div>
+        <div class="glass reveal" data-tilt><div class="icon-dot">↻</div><h3>Always up to date</h3><p>Clipciety updates itself in the background, and never while you're live.</p></div>
       </div>
-    </section>
+      <div class="glass cta reveal" style="margin-top:48px" data-tilt="4">
+        <h2 id="trust">Ready to stop scrubbing <span class="grad">VODs?</span></h2>
+        <div class="actions" style="justify-content:center"><a class="btn" href="https://github.com/brownnahj30-commits/streammind-releases/releases/latest">Download for Windows</a></div>
+      </div>
+    </div></section>
   </main>
 
   <footer class="site"><div class="wrap">
     <span>© 2026 Sinciety · Contact: <a href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a></span>
     <span><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a></span>
   </div></footer>
+
+  <script src="../assets/site.js"></script>
+  <script>
+    // Karaoke-style caption: highlight one word at a time, like Clipciety's real captions.
+    (() => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const lines = [['NO','WAY','HE','HIT','THAT'], ['CHAT','IS','LOSING','IT'], ['CLIP','THAT','RIGHT','NOW']];
+      const cap = document.getElementById('cap');
+      let li = 0, wi = 0;
+      setInterval(() => {
+        if (wi === 0) cap.innerHTML = lines[li].map((w) => `<span>${w}</span>`).join(' ');
+        [...cap.children].forEach((s, i) => s.classList.toggle('on', i === wi));
+        if (++wi >= lines[li].length) { wi = 0; li = (li + 1) % lines.length; }
+      }, 420);
+    })();
+  </script>
+  <script type="module">
+    import { startHero } from '../assets/hero3d.js';
+    startHero(document.getElementById('scene3d'), { orb: false, density: 0.8 });
+  </script>
 </body>
 </html>
