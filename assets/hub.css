@@ -74,3 +74,9 @@
   background: linear-gradient(180deg, #fff 35%, color-mix(in srgb, var(--c) 75%, #fff)); -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 0 30px color-mix(in srgb, var(--c) 45%, transparent)) drop-shadow(0 6px 24px rgba(0,0,0,.7)); }
 .h-dive-caps span { display: block; margin: 14px auto 0; max-width: 44ch; color: #e3e5ee; font-size: clamp(16px, 1.6vw, 20px); text-shadow: 0 2px 16px rgba(0,0,0,.9); }
+/* what's live list */
+.h-shipped { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.h-shipped li { position: relative; padding: 16px 18px 16px 34px; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; background: rgba(255,255,255,.025); color: #b9bccb; font-size: 14px; line-height: 1.45; }
+.h-shipped li::before { content: ""; position: absolute; left: 16px; top: 22px; width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 12px var(--c); }
+.h-shipped b { display: block; color: #fff; font-size: 15px; margin-bottom: 3px; }
+.h-next { padding-top: 140px; background: #05050a; }

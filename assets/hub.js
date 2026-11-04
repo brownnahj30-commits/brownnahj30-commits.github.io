@@ -91,7 +91,7 @@
   })();
 
   // ---------- portals stack: each panel pins, the next slides over it ----------
-  const panels = G.utils.toArray('.h-panel');
+  document.querySelectorAll('.h-stack').forEach((stack) => { const panels = G.utils.toArray(stack.querySelectorAll('.h-panel'));
   panels.forEach((p, i) => {
     const copy = p.querySelector('.h-panel-copy');
     G.from(copy.children, { y: 60, opacity: 0, stagger: 0.08, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: p, start: 'top 60%' } });
@@ -100,7 +100,7 @@
       ST.create({ trigger: p, start: 'top top', end: 'bottom top', pin: true, pinSpacing: false });
       G.to(p, { scale: 0.9, opacity: 0.35, borderRadius: 28, ease: 'none', scrollTrigger: { trigger: panels[i + 1], start: 'top bottom', end: 'top top', scrub: true } });
     }
-  });
+  }); });
 
   // ---------- shared section motion ----------
   document.querySelectorAll('.u-energy').forEach((line) => G.to(line, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: line.parentElement, start: 'top 95%', end: 'top 30%', scrub: true } }));
