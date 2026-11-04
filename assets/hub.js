@@ -52,6 +52,44 @@
     .from('.h-quick a', { opacity: 0, y: 24, stagger: 0.1, duration: 1 }, 1.0);
   G.to('.h-hero .wrap:first-child', { yPercent: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.h-hero', start: 'top top', end: 'bottom top', scrub: true } });
 
+
+  // ---------- portal dive: each scroll segment opens a portal into the next world ----------
+  (() => {
+    const dive = document.querySelector('.h-dive'); if (!dive) return;
+    dive.classList.add('live');
+    const worlds = G.utils.toArray('.h-dive-world'), caps = G.utils.toArray('.h-dive-caps li'), ring = dive.querySelector('.h-dive-ring');
+    const N = worlds.length, vmax = () => Math.hypot(innerWidth, innerHeight);
+    let fx = false, cur = -1;
+    const media = (i, on) => {
+      const w = worlds[i]; if (!w) return; const v = w.querySelector('video'), cv = w.querySelector('canvas');
+      if (v) { if (on) { if (!v.src) v.src = mobile ? v.dataset.mobile : v.dataset.desktop; v.play().catch(() => {}); } else v.pause(); }
+      if (cv && on && !fx && window.startCensusFx) { fx = true; window.startCensusFx(cv, { density: 0.9, offsetX: 0.5 }); }
+    };
+    const render = (p) => {
+      const x = p * (N + 0.6);                    // segment i opens world i; the tail holds on the last world
+      const i = Math.min(N - 1, Math.floor(x)), k = Math.min(1, x - i);
+      worlds.forEach((w, j) => {
+        let r = 0, sc = 1, op = 1, bl = 0;
+        if (j < i) { r = 150; sc = 2.6; op = 0; }
+        else if (j === i) { const e = 1 - Math.pow(1 - Math.min(1, k / 0.75), 3); r = e * 150; sc = 1.35 - 0.35 * e;
+          const out = j < N - 1 ? Math.max(0, (k - 0.82) / 0.18) : 0; sc *= 1 + out * 1.6; op = 1 - out; bl = out * 10; }
+        w.style.clipPath = `circle(${r}% at 50% 50%)`; w.style.transform = `scale(${sc})`; w.style.opacity = op; w.style.filter = bl ? `blur(${bl}px)` : '';
+        w.style.zIndex = j === i ? 1 : 0;
+      });
+      // portal ring rides the opening edge, then flares away
+      const e = Math.min(1, k / 0.75), d = (e * 1.5) * vmax();
+      ring.style.width = ring.style.height = Math.max(10, d) + 'px'; ring.style.setProperty('--rc', getComputedStyle(worlds[i]).getPropertyValue('--c'));
+      ring.style.opacity = x < N ? (k < 0.75 ? 0.95 : 0) : 0;
+      const ci = x >= N ? N : i;
+      if (ci !== cur) { caps.forEach((c, j) => c.classList.toggle('on', j === ci)); worlds.forEach((_, j) => media(j, Math.abs(j - i) <= 1 && j >= i - 1)); cur = ci; }
+    };
+    render(0);
+    ST.create({ trigger: dive, start: 'top top', end: () => '+=' + innerHeight * (N + 1), pin: '.h-dive-stage', scrub: 0.5, anticipatePin: 1, invalidateOnRefresh: true,
+      onUpdate: (self) => render(self.progress),
+      onLeave: () => worlds.forEach((_, j) => media(j, false)), onLeaveBack: () => worlds.forEach((_, j) => media(j, false)),
+      onEnter: () => { cur = -1; }, onEnterBack: () => { cur = -1; } });
+  })();
+
   // ---------- portals stack: each panel pins, the next slides over it ----------
   const panels = G.utils.toArray('.h-panel');
   panels.forEach((p, i) => {

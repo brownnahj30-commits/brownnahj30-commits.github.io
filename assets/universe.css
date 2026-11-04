@@ -241,3 +241,4 @@ html:not(.js) .u-vision-line .sw, .no-motion .u-vision-line .sw { opacity: 1; }
   .u-saga-chapters { bottom: calc(6vh + 28px); }
   .u-saga-chapters li { left: 20px; right: 20px; }
 }
+.u-saga.sticky .u-saga-stage { position: sticky; top: 0; }

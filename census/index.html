@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../assets/universe.css">
+  <link rel="stylesheet" href="../assets/codex-scan.css">
   <style>
     .census { --gold: #ffd27a; --ice: #7fb4ff; background: radial-gradient(1100px 800px at 70% 40%, #0c1330 0%, #05060d 70%); }
     .c-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -64,6 +65,30 @@
               </div>
     </section>
 
+    <!-- ================= THE CENSUS SCAN: scroll-driven ================= -->
+    <section class="cx" aria-labelledby="cx-h">
+      <div class="cx-stage">
+        <canvas aria-hidden="true"></canvas>
+        <article class="cx-card" aria-label="Example inspection card">
+          <header><h3 id="cx-h">Example Hero</h3><small>Example</small></header>
+          <div class="cx-big"><div><em>Combat Rating</em><strong data-to="412">0</strong></div><div><em>Skill Points</em><strong data-to="356">0</strong></div></div>
+          <div class="cx-bar">Might<span><i data-v=".86"></i></span></div>
+          <div class="cx-bar">Precision<span><i data-v=".42"></i></span></div>
+          <div class="cx-bar">Health<span><i data-v=".64"></i></span></div>
+          <div class="cx-bar">Defense<span><i data-v=".58"></i></span></div>
+          <div class="cx-src">Source: Daybreak Census · retrieved just now<br>Values not in the record are shown as missing.</div>
+        </article>
+        <ol class="cx-caps">
+          <li><b>01 · Census</b><strong>Every hero online</strong><span>Public character records, straight from Daybreak's Census service.</span></li>
+          <li><b>02 · Search</b><strong>Scan the world</strong><span>Search by name, then narrow by server, faction, power, CR or SP.</span></li>
+          <li><b>03 · Lock on</b><strong>Found them</strong><span>One character, out of everyone.</span></li>
+          <li><b>04 · Inspect</b><strong>Know their build</strong><span>Combat Rating, Skill Points and combat stats in one card.</span></li>
+          <li><b>05 · Sources</b><strong>Never guesses</strong><span>Every number shows where it came from and when.</span></li>
+        </ol>
+        <div class="cx-meter" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
     <section class="c-section" id="about" aria-labelledby="about-h">
       <div class="wrap">
         <div class="u-eyebrow"><span>01</span> About</div>
@@ -113,6 +138,7 @@
     const h = document.querySelector('header.site');
     addEventListener('scroll', () => h.classList.toggle('solid', scrollY > 80), { passive: true });
   </script>
+  <script src="../assets/codex-scan.js"></script>
   <script src="../assets/cinema.js" defer></script>
 </body>
 </html>

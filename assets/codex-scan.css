@@ -1,0 +1,32 @@
+/* DCUO Codex: "The Census Scan" scroll sequence */
+.cx { position: relative; height: 520vh; background: #05050a; }
+.cx-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(900px 600px at 50% 50%, #0d1430, #05050a 70%); }
+.cx-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cx-caps { list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; bottom: clamp(40px, 10vh, 100px); z-index: 3; text-align: center; }
+.cx-caps li { position: absolute; left: 20px; right: 20px; bottom: 0; opacity: 0; transform: translateY(20px); filter: blur(6px); transition: opacity .5s, transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; }
+.cx-caps li.on { opacity: 1; transform: none; filter: none; }
+.cx-caps b { display: block; font: 500 12px/1 "IBM Plex Mono", monospace; letter-spacing: .4em; text-transform: uppercase; color: #ffd27a; text-shadow: 0 0 14px #ffb02e; margin-bottom: 12px; }
+.cx-caps strong { display: block; font: 700 clamp(38px, 7vw, 104px)/.92 "Chakra Petch", sans-serif; text-transform: uppercase;
+  background: linear-gradient(180deg, #fff 35%, #ffd27a); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 26px rgba(255,190,80,.35)); }
+.cx-caps span { display: block; margin: 12px auto 0; max-width: 46ch; color: #d9dbe6; font-size: clamp(15px, 1.5vw, 19px); }
+.cx-card { position: absolute; left: 50%; top: 44%; z-index: 2; width: min(440px, 88vw); padding: 20px 22px; border-radius: 18px; opacity: 0;
+  background: linear-gradient(180deg, rgba(20,22,44,.92), rgba(10,10,22,.94)); border: 1px solid rgba(255,210,122,.35); box-shadow: 0 30px 100px -20px rgba(0,0,0,.9), 0 0 60px -20px rgba(255,190,80,.6); }
+.cx-card header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.cx-card h3 { margin: 0; font: 700 22px/1.1 "Chakra Petch", sans-serif; color: #fff; }
+.cx-card header small { font: 500 10px/1 "IBM Plex Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: #ffd27a; border: 1px solid rgba(255,210,122,.4); padding: 4px 6px; border-radius: 5px; }
+.cx-big { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.cx-big div { padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); }
+.cx-big em { display: block; font: 500 10px/1 "IBM Plex Mono", monospace; font-style: normal; letter-spacing: .16em; text-transform: uppercase; color: #8b8fa8; margin-bottom: 6px; }
+.cx-big strong { font: 800 28px/1 "Chakra Petch", sans-serif; color: #fff; }
+.cx-bar { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 10px; margin: 7px 0; font: 500 12px/1 "IBM Plex Sans", sans-serif; color: #c9cbd8; }
+.cx-bar span { height: 6px; border-radius: 3px; background: rgba(255,255,255,.07); overflow: hidden; }
+.cx-bar i { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #5b8cff, #ffd27a); box-shadow: 0 0 10px rgba(255,210,122,.6); }
+.cx-src { margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,.12); font: 500 11px/1.5 "IBM Plex Mono", monospace; color: #8b8fa8; opacity: 0; }
+.cx-meter { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(255,255,255,.1); z-index: 3; }
+.cx-meter i { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #5b8cff, #ffd27a); }
+.cx.still { height: auto; } .cx.still .cx-stage { position: relative; height: auto; padding: 100px 0 80px; }
+.cx.still canvas, .cx.still .cx-meter { display: none; }
+.cx.still .cx-card { position: relative; left: auto; top: auto; margin: 0 auto 40px; opacity: 1; transform: none; }
+.cx.still .cx-bar i { transform: scaleX(.7); } .cx.still .cx-src { opacity: 1; }
+.cx.still .cx-caps { position: relative; bottom: auto; display: grid; gap: 24px; } .cx.still .cx-caps li { position: relative; opacity: 1; transform: none; filter: none; left: auto; right: auto; }
+@media (max-width: 760px) { .cx-card { top: 40%; padding: 16px; } .cx-big strong { font-size: 22px; } }

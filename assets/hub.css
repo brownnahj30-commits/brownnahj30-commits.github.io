@@ -54,3 +54,23 @@
 .h-reel video.on { opacity: .62; }
 .h-reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,10,.85) 0%, rgba(5,5,10,.35) 50%, rgba(5,5,10,.15) 100%), linear-gradient(0deg, #05050a 0%, transparent 35%); }
 @media (max-width: 760px), (prefers-reduced-motion: reduce) { .h-reel video { display: none; } }
+
+/* ================= PORTAL DIVE: pinned, scroll opens a portal into each world ================= */
+.h-dive { position: relative; background: #05050a; display: none; }
+.h-dive.live { display: block; }
+.h-dive-stage { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; isolation: isolate; background: radial-gradient(60% 60% at 50% 50%, #120e24, #05050a 70%); }
+.h-dive-world { position: absolute; inset: 0; clip-path: circle(0% at 50% 50%); will-change: clip-path, transform; }
+.h-dive-world video, .h-dive-world canvas { background: #05050a; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.h-dive-census { background: radial-gradient(900px 600px at 50% 50%, #0d1430, #05050a 70%); }
+.h-dive-ring { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; translate: -50% -50%; pointer-events: none; z-index: 2;
+  border: 2px solid var(--rc, #fff); box-shadow: 0 0 30px 6px var(--rc, #fff), inset 0 0 30px 4px var(--rc, #fff); opacity: 0; }
+.h-dive-shade { position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 50%, transparent 50%, rgba(0,0,0,.65) 100%), linear-gradient(0deg, rgba(5,5,10,.85) 0%, transparent 40%); }
+.h-dive-caps { list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; bottom: clamp(48px, 12vh, 120px); z-index: 4; text-align: center; }
+.h-dive-caps li { position: absolute; left: 20px; right: 20px; bottom: 0; opacity: 0; transform: translateY(24px) scale(.96); filter: blur(8px); transition: opacity .55s ease, transform .8s cubic-bezier(.2,.8,.2,1), filter .55s ease; }
+.h-dive-caps li.on { opacity: 1; transform: none; filter: none; }
+.h-dive-caps b { display: block; font: 500 12px/1 var(--mono); letter-spacing: .4em; text-transform: uppercase; color: var(--c); text-shadow: 0 0 16px var(--c); margin-bottom: 12px; }
+.h-dive-caps strong { display: block; font: 700 clamp(44px, 9vw, 140px)/.9 var(--display); text-transform: uppercase;
+  background: linear-gradient(180deg, #fff 35%, color-mix(in srgb, var(--c) 75%, #fff)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 30px color-mix(in srgb, var(--c) 45%, transparent)) drop-shadow(0 6px 24px rgba(0,0,0,.7)); }
+.h-dive-caps span { display: block; margin: 14px auto 0; max-width: 44ch; color: #e3e5ee; font-size: clamp(16px, 1.6vw, 20px); text-shadow: 0 2px 16px rgba(0,0,0,.9); }

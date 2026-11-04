@@ -104,6 +104,31 @@
       </div>
     </section>
 
+    <!-- ================= THE GRAND FINAL: scroll-driven arena showdown ================= -->
+    <section class="u-saga" id="showdown" data-scrub="20" aria-labelledby="show-h">
+      <div class="u-saga-stage">
+        <picture class="u-saga-poster" aria-hidden="true">
+          <source media="(max-width: 760px)" srcset="../assets/media/show-poster-m.jpg">
+          <img src="../assets/media/show-poster.jpg" alt="" loading="lazy" decoding="async">
+        </picture>
+        <video class="u-saga-video" muted playsinline preload="none" aria-hidden="true" data-desktop="../assets/media/show.mp4" data-mobile="../assets/media/show-m.mp4"></video>
+        <div class="u-saga-shade" aria-hidden="true"></div>
+        <div class="u-bars u-saga-bars" aria-hidden="true"><i></i><i></i></div>
+        <div class="u-saga-head wrap">
+          <div class="u-eyebrow"><span>FINAL</span> Winter Showdown</div>
+          <h2 id="show-h" class="u-saga-title">Scroll to the final</h2>
+        </div>
+        <ol class="u-saga-chapters" aria-label="Grand final, step by step">
+          <li data-at="0" style="--c:#7fe9ff"><b>I</b><strong>Lights out</strong><span>Thousands of phones light up the dark.</span></li>
+          <li data-at="3.5" style="--c:#ff3d9a"><b>II</b><strong>The walkout</strong><span>Two teams. One stage. Every beam on them.</span></li>
+          <li data-at="7" style="--c:#9d6bff"><b>III</b><strong>Grand final</strong><span>The whole arena comes alive.</span></li>
+          <li data-at="11" style="--c:#ff2a3a"><b>IV</b><strong>The clutch</strong><span>One round left. Nobody breathes.</span></li>
+          <li data-at="14.5" style="--c:#ffc23d"><b>V</b><strong>Champions</strong><span>Your name could be next. Register below.</span></li>
+        </ol>
+        <div class="u-saga-meter" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
     <section class="t-reg" id="register" aria-labelledby="reg-h">
       <div class="wrap">
         <div class="u-eyebrow" style="justify-content:center;display:flex"><span>01</span> Registration</div>
@@ -171,6 +196,7 @@
   <script src="../assets/lenis.min.js"></script>
   <script src="../assets/site.js"></script>
   <script src="../assets/sound.js"></script>
+  <script src="../assets/scrub.js"></script>
   <script src="../assets/cinema.js" defer></script>
 </body>
 </html>

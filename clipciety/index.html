@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../assets/moment.css">
 </head>
 <body>
   <canvas id="scene3d" aria-hidden="true"></canvas>
@@ -72,6 +73,37 @@
         <button class="cinema-play" type="button"><b>▶</b>Watch with sound</button>
       </div>
     </div></section>
+
+    <!-- ================= THE MOMENT: scroll-driven walkthrough ================= -->
+    <section class="cm" aria-labelledby="cm-title">
+      <div class="cm-stage">
+        <div class="cm-head"><div class="cm-step">01 · Live</div><h2 class="cm-title" id="cm-title">You are streaming</h2></div>
+        <div class="cm-rig">
+          <div class="cm-screen">
+            <video muted playsinline preload="none" poster="../assets/media/saga-poster.jpg" data-src="../assets/media/saga.mp4" aria-hidden="true"></video>
+            <span class="cm-live">LIVE</span>
+            <span class="cm-flag">HIGHLIGHT · 94</span>
+            <div class="cm-crop" aria-hidden="true"></div>
+            <div class="cm-cap" aria-hidden="true">No way she landed that</div>
+          </div>
+          <div class="cm-chat" aria-label="Example chat"></div>
+          <div class="cm-signals" aria-hidden="true">
+            <div class="cm-sig" style="--c:#7fe9ff"><small>Game audio</small><svg viewBox="0 0 100 36" preserveAspectRatio="none"><path/></svg></div>
+            <div class="cm-sig" style="--c:#b28bff"><small>Your voice</small><svg viewBox="0 0 100 36" preserveAspectRatio="none"><path/></svg></div>
+            <div class="cm-sig" style="--c:#ff3d9a"><small>Chat rate</small><svg viewBox="0 0 100 36" preserveAspectRatio="none"><path/></svg></div>
+            <div class="cm-sig cm-score"><small>Highlight score</small><strong>18</strong></div>
+          </div>
+        </div>
+        <div class="cm-queue" aria-hidden="true">
+          <small>Review queue · 1 new</small>
+          <div class="cm-qthumb"><img src="../assets/media/saga-poster-m.jpg" alt="" loading="lazy"></div>
+          <h4>She landed it. Chat lost it.</h4>
+          <p>0:24 · 9:16 · captions on</p>
+          <div class="cm-qacts"><span>Keep</span><span>Delete</span></div>
+        </div>
+        <div class="cm-meter" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
 
     <section class="story" aria-labelledby="story-h">
       <div class="story-pin"><div class="wrap">
@@ -137,6 +169,7 @@
     import { startHero } from '../assets/hero3d.js';
     startHero(document.getElementById('scene3d'), { orb: false, density: 0.8 });
   </script>
+  <script src="../assets/moment.js"></script>
   <script src="../assets/cinema.js" defer></script>
 </body>
 </html>
