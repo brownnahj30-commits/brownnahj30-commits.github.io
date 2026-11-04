@@ -157,7 +157,7 @@ html:not(.js) .u-vision-line .sw, .no-motion .u-vision-line .sw { opacity: 1; }
 .u-footer { position: relative; z-index: 1; overflow: hidden; border-top: 1px solid var(--line); background: #040407; padding-top: 80px; }
 .u-footer-mark { position: absolute; left: 50%; bottom: -0.18em; transform: translateX(-50%); font: 700 clamp(90px, 22vw, 340px)/1 var(--display); letter-spacing: .02em; white-space: nowrap; pointer-events: none;
   color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.07); background: linear-gradient(180deg, rgba(255,122,46,.12), transparent 70%); -webkit-background-clip: text; background-clip: text; }
-.u-footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; position: relative; }
+.u-footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; position: relative; }
 .u-footer-tag { color: var(--dim); margin: 14px 0 10px; }
 .u-mail { color: #ffb27a; font-weight: 600; text-decoration: none; }
 .u-footer h4 { font: 600 11px/1 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: var(--hud); margin: 6px 0 16px; }
