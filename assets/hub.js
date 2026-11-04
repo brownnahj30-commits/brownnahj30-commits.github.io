@@ -11,6 +11,14 @@
   document.querySelectorAll('[data-words]').forEach((el) => { el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="w"><span>${w}</span></span>`).join(' '); });
   document.querySelectorAll('[data-scrub-words]').forEach((el) => { el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="sw">${w}</span>`).join(' '); });
 
+  // ---------- hero montage of every world (desktop) ----------
+  const reel = document.querySelector('.h-reel video');
+  if (reel && !reduced && !mobile) {
+    reel.src = reel.dataset.src;
+    reel.addEventListener('playing', () => reel.classList.add('on'), { once: true });
+    new IntersectionObserver(([e]) => { e.isIntersecting ? reel.play().catch(() => {}) : reel.pause(); }).observe(reel);
+  }
+
   // ---------- product portals: media loads near view, plays only while visible ----------
   const webm = document.createElement('video').canPlayType('video/webm; codecs="vp9"');
   document.querySelectorAll('.h-panel').forEach((panel) => {

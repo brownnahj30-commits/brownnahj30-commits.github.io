@@ -2,31 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Register for Winter Showdown on Sinciety.">
-  <title>Tournaments · Sinciety</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Register for Winter Showdown on Sinciety: a Marvel Rivals community tournament, December 11–12, 2026.">
+  <meta name="theme-color" content="#05050a">
+  <title>Winter Showdown · Sinciety Tournaments</title>
+  <link rel="icon" href="../clipciety/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="preload" as="image" href="../assets/media/arena-poster.jpg" media="(min-width: 761px)">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../assets/universe.css">
   <style>
-    body { background: radial-gradient(ellipse at 60% 0%, #152744, #070d19 58%); }
-    .tournament-head { padding-block: clamp(2rem, 5vw, 4rem) 1.75rem; }
-    .tournament-head .u-eyebrow { margin-top: 2rem; }
-    .tournament-frame { display: block; width: 100%; height: 1250px; border: 0; background: #070d19; }
-    @media (max-width: 560px) { .tournament-frame { height: 1600px; } }
+    .t-page { --ice: #7fe9ff; --pink: #ff3d9a; --gold: #ffc23d; background: #04040a; }
+    .t-hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: end; overflow: hidden; isolation: isolate; }
+    .t-media { position: absolute; inset: 0; z-index: -2; background: #04040a; }
+    .t-media img, .t-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .t-media video { opacity: 0; transition: opacity 1.2s; }
+    .t-media video.ready { opacity: 1; }
+    .t-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #04040a 2%, rgba(4,4,10,.55) 38%, rgba(4,4,10,.1) 70%), radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0,0,0,.6) 100%); }
+    .t-bars i { position: absolute; left: 0; right: 0; height: 7vh; background: #000; z-index: 2; transition: transform 1.6s cubic-bezier(.7,0,.2,1); }
+    .t-bars i:first-child { top: 0; transform: scaleY(7); transform-origin: top; } .t-bars i:last-child { bottom: 0; transform: scaleY(7); transform-origin: bottom; }
+    .t-open .t-bars i { transform: none; }
+    .t-nav { position: absolute; top: calc(7vh + 18px); left: 0; right: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; }
+    .t-nav a { color: #d6e9ff; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .t-nav .org { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 9px 12px; border: 1px solid rgba(127,233,255,.35); border-radius: 8px; background: rgba(4,8,20,.5); }
+    .t-copy { position: relative; z-index: 3; padding-bottom: calc(7vh + 50px); text-align: center; }
+    .t-kicker { font: 600 13px/1.6 var(--font); letter-spacing: .34em; text-transform: uppercase; color: var(--ice); }
+    .t-kicker b { color: var(--pink); }
+    .t-title { margin: 12px 0 0; font: 700 clamp(56px, 12.5vw, 200px)/.86 var(--display); text-transform: uppercase; letter-spacing: .01em;
+      background: linear-gradient(180deg, #fff 0%, #e8f6ff 40%, #8fb6d8 58%, #ffffff 61%, #6f8fb0 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 30px rgba(127,233,255,.35)) drop-shadow(0 10px 30px rgba(0,0,0,.7)); position: relative; }
+    .t-title::after { content: "Winter Showdown"; position: absolute; inset: 0; color: transparent; background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.95) 50%, transparent 60%);
+      background-size: 300% 100%; background-position: 150% 0; -webkit-background-clip: text; background-clip: text; animation: t-sweep 5s ease-in-out 1.6s infinite; }
+    @keyframes t-sweep { 0% { background-position: 150% 0 } 40%, 100% { background-position: -60% 0 } }
+    .t-date { margin-top: 18px; font: 700 clamp(18px, 2.2vw, 26px)/1.2 var(--display); text-transform: uppercase; letter-spacing: .14em; color: #e9f4ff; }
+    .t-date span { color: var(--gold); }
+    .t-count { display: inline-flex; gap: clamp(10px, 2vw, 22px); margin-top: 26px; padding: 14px 22px; border-radius: 16px; background: rgba(6,10,24,.6); border: 1px solid rgba(127,233,255,.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 0 40px -10px rgba(127,233,255,.5); }
+    .t-count div { display: grid; min-width: 62px; }
+    .t-count b { font: 700 clamp(30px, 4vw, 48px)/1 var(--display); color: #fff; text-shadow: 0 0 18px rgba(127,233,255,.8); font-variant-numeric: tabular-nums; }
+    .t-count small { font: 500 10px/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: #8fb6d8; margin-top: 6px; }
+    .t-cta { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .t-btn { background: linear-gradient(120deg, var(--ice), #4f8cff 50%, var(--pink)); color: #04040a; box-shadow: 0 14px 50px -10px rgba(127,233,255,.8); }
+    .t-btn:hover { color: #04040a; }
+    .t-info { position: relative; padding: clamp(70px, 9vw, 110px) 0 40px; overflow: hidden; }
+    .t-beams { position: absolute; inset: 0; pointer-events: none; opacity: .5; }
+    .t-beams i { position: absolute; top: -20%; width: 180px; height: 140%; transform-origin: 50% 0; will-change: transform;
+      background: linear-gradient(90deg, transparent, var(--c) 50%, transparent);
+      -webkit-mask-image: linear-gradient(180deg, #000, transparent 80%); mask-image: linear-gradient(180deg, #000, transparent 80%);
+      animation: t-beam 7s ease-in-out infinite alternate; }
+    @keyframes t-beam { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
+    .t-grid { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .t-card { position: relative; padding: 24px 22px; border-radius: 18px; background: rgba(8,12,28,.72); border: 1px solid rgba(127,233,255,.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow: hidden; }
+    .t-card::before { content: ""; position: absolute; left: 22px; right: 22px; top: -1px; height: 2px; background: linear-gradient(90deg, transparent, var(--c, #7fe9ff), transparent); box-shadow: 0 0 16px var(--c, #7fe9ff); }
+    .t-card small { font: 500 11px/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: #8fb6d8; }
+    .t-card b { display: block; margin-top: 10px; font: 700 clamp(22px, 2.2vw, 28px)/1.15 var(--display); text-transform: uppercase; color: #fff; }
+    .t-reg { position: relative; padding: 40px 0 100px; }
+    .t-reg h2 { font-size: clamp(36px, 5.5vw, 72px); text-transform: uppercase; text-align: center; }
+    .t-reg .u-lede { margin-inline: auto; text-align: center; }
+    .t-terminal { position: relative; margin-top: 34px; border-radius: 20px; padding: 10px; background: linear-gradient(180deg, rgba(127,233,255,.16), rgba(255,61,154,.1)); box-shadow: 0 40px 120px -40px rgba(127,233,255,.55); }
+    .t-terminal::before, .t-terminal::after { content: ""; position: absolute; width: 26px; height: 26px; border: 2px solid var(--ice); }
+    .t-terminal::before { left: -8px; top: -8px; border-right: 0; border-bottom: 0; } .t-terminal::after { right: -8px; bottom: -8px; border-left: 0; border-top: 0; }
+    .t-terminal .tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 6px 12px; border-radius: 999px; background: #04040a; border: 1px solid rgba(127,233,255,.5); font: 500 11px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--ice); white-space: nowrap; }
+    .tournament-frame { display: block; width: 100%; height: 1250px; border: 0; border-radius: 12px; background: #070d19; }
+    @media (max-width: 900px) { .t-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .tournament-frame { height: 1600px; } .t-count div { min-width: 48px; } .t-nav { top: calc(7vh + 10px); } }
+    @media (prefers-reduced-motion: reduce) { .t-bars i { transform: none; transition: none; } .t-title::after, .t-beams i { animation: none; } .t-media video { display: none; } }
   </style>
 </head>
-<body>
+<body class="home t-page">
   <main>
-    <header class="wrap tournament-head">
-      <a class="brand" href="../">← Sinciety</a>
-      <a href="organizer/" style="float:right;color:#bdddf7;font-size:.875rem">Organizer · View signups →</a>
-      <p class="u-eyebrow">Sinciety tournaments</p>
-      <h1 class="u-title">Winter Showdown</h1>
-      <p class="u-lede">December 11–12, 2026 · Marvel Rivals community tournament</p>
-    </header>
-    <iframe id="winter-registration" class="tournament-frame" title="Winter Showdown registration and event details" src="https://sinciety-winter-showdown.brownnahj30.workers.dev/?embed=sinciety"></iframe>
+    <section class="t-hero" aria-labelledby="t-title">
+      <div class="t-media" aria-hidden="true">
+        <picture><source media="(max-width: 760px)" srcset="../assets/media/arena-poster-m.jpg"><img src="../assets/media/arena-poster.jpg" alt=""></picture>
+        <video muted playsinline loop preload="none" data-desktop="../assets/media/arena" data-mobile="../assets/media/arena-m"></video>
+      </div>
+      <div class="t-shade" aria-hidden="true"></div>
+      <div class="t-bars" aria-hidden="true"><i></i><i></i></div>
+      <div class="wrap t-nav">
+        <a href="../">← Sinciety</a>
+        <a class="org" href="organizer/">Organizer · View signups →</a>
+      </div>
+      <div class="wrap t-copy">
+        <div class="t-kicker">Sinciety tournaments <b>·</b> Marvel Rivals community tournament</div>
+        <h1 id="t-title" class="t-title">Winter Showdown</h1>
+        <div class="t-date">December <span>11–12</span>, 2026</div>
+        <div class="t-count" id="count" role="timer" aria-label="Time until Winter Showdown">
+          <div><b data-u="d">--</b><small>Days</small></div><div><b data-u="h">--</b><small>Hours</small></div><div><b data-u="m">--</b><small>Min</small></div><div><b data-u="s">--</b><small>Sec</small></div>
+        </div>
+        <div class="t-cta"><a class="btn t-btn" href="#register">Register now</a><a class="btn ghost" href="#event">Event details</a></div>
+      </div>
+    </section>
+
+    <section class="t-info" id="event" aria-label="Event details">
+      <div class="t-beams" aria-hidden="true"><i style="left:8%;--c:rgba(127,233,255,.6)"></i><i style="left:38%;--c:rgba(255,61,154,.5);animation-delay:-2s"></i><i style="left:66%;--c:rgba(157,107,255,.55);animation-delay:-4s"></i><i style="left:90%;--c:rgba(255,194,61,.45);animation-delay:-1s"></i></div>
+      <div class="wrap t-grid">
+        <div class="t-card reveal" style="--c:#7fe9ff"><small>When</small><b>Dec 11–12, 2026</b></div>
+        <div class="t-card reveal" style="--c:#ff3d9a"><small>Game</small><b>Marvel Rivals</b></div>
+        <div class="t-card reveal" style="--c:#9d6bff"><small>Hosted by</small><b>Sinciety</b></div>
+        <div class="t-card reveal" style="--c:#ffc23d"><small>Sign-ups</small><b>Open now</b></div>
+      </div>
+    </section>
+
+    <section class="t-reg" id="register" aria-labelledby="reg-h">
+      <div class="wrap">
+        <div class="u-eyebrow" style="justify-content:center;display:flex"><span>01</span> Registration</div>
+        <h2 id="reg-h" class="u-title">Claim your spot</h2>
+        <p class="u-lede">Register your team below. All the official event details live in the registration panel.</p>
+        <div class="t-terminal">
+          <span class="tag">Winter Showdown · registration</span>
+          <iframe id="winter-registration" class="tournament-frame" title="Winter Showdown registration and event details" src="https://sinciety-winter-showdown.brownnahj30.workers.dev/?embed=sinciety"></iframe>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="u-footer" style="padding-top:50px">
+    <div class="u-footer-mark" aria-hidden="true">SHOWDOWN</div>
+    <div class="wrap u-footer-base" style="margin-top:0"><span>© 2026 Sinciety · Community tournament, not affiliated with Marvel or NetEase Games.</span><a href="../" class="u-top">Back to Sinciety ↑</a></div>
+  </footer>
+
   <script>
+    // Registration panel height (unchanged from the original page)
     const registration = document.getElementById('winter-registration');
     const eventOrigin = new URL(registration.src).origin;
     window.addEventListener('message', ({ origin, source, data }) => {
@@ -36,5 +133,44 @@
       }
     });
   </script>
+  <script>
+    (() => {
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      requestAnimationFrame(() => document.body.classList.add('t-open'));
+      // countdown to Dec 11, 2026 (US Eastern)
+      const target = Date.parse('2026-12-11T00:00:00-05:00');
+      const els = Object.fromEntries([...document.querySelectorAll('#count b')].map((b) => [b.dataset.u, b]));
+      const tick = () => {
+        let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+        const d = Math.floor(s / 86400); s -= d * 86400; const h = Math.floor(s / 3600); s -= h * 3600; const m = Math.floor(s / 60); s -= m * 60;
+        els.d.textContent = String(d); els.h.textContent = String(h).padStart(2, '0'); els.m.textContent = String(m).padStart(2, '0'); els.s.textContent = String(s).padStart(2, '0');
+      };
+      tick(); setInterval(tick, 1000);
+      // arena loop: right size for the screen, only plays while visible
+      const v = document.querySelector('.t-media video');
+      if (!reduced) {
+        const webm = v.canPlayType('video/webm; codecs="vp9"'), m = innerWidth <= 760;
+        v.src = (m ? v.dataset.mobile : v.dataset.desktop) + (webm ? '.webm' : '.mp4');
+        v.addEventListener('playing', () => v.classList.add('ready'), { once: true });
+        new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }).observe(v);
+      }
+      // crowd roar when the curtain opens (only if the visitor has sound on)
+      setTimeout(() => {
+        const S = window.SincietySound; if (!S || !S.isOn || !S.isOn()) return;
+        const AC = window.AudioContext || window.webkitAudioContext; const ctx = new AC(); const t = ctx.currentTime;
+        const buf = ctx.createBuffer(1, ctx.sampleRate * 3, ctx.sampleRate), d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+        const src = ctx.createBufferSource(); src.buffer = buf; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 900; bp.Q.value = 0.6;
+        const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.22, t + 0.9); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.9);
+        src.connect(bp).connect(g).connect(ctx.destination); src.start(t); src.stop(t + 3);
+        const o = ctx.createOscillator(), og = ctx.createGain(); o.frequency.setValueAtTime(90, t + 0.6); o.frequency.exponentialRampToValueAtTime(32, t + 1.8);
+        og.gain.setValueAtTime(0.0001, t + 0.6); og.gain.exponentialRampToValueAtTime(0.5, t + 0.62); og.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+        o.connect(og).connect(ctx.destination); o.start(t + 0.6); o.stop(t + 2.3);
+      }, 400);
+    })();
+  </script>
+  <script src="../assets/lenis.min.js"></script>
+  <script src="../assets/site.js"></script>
+  <script src="../assets/sound.js"></script>
+  <script src="../assets/cinema.js" defer></script>
 </body>
 </html>

@@ -46,3 +46,11 @@
   .h-panel-shade { background: linear-gradient(0deg, rgba(5,5,10,.97) 0%, rgba(5,5,10,.7) 45%, rgba(5,5,10,.1) 75%); }
   .h-media img, .h-media video { object-position: 50% 30%; }
 }
+
+/* hero: a montage of every Sinciety world, blended over the studio orb */
+.h-hero { isolation: isolate; overflow: hidden; }
+.h-reel { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.h-reel video { width: 100%; height: 100%; object-fit: cover; opacity: 0; mix-blend-mode: screen; transition: opacity 2s ease; filter: saturate(1.15) contrast(1.05); }
+.h-reel video.on { opacity: .62; }
+.h-reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,10,.85) 0%, rgba(5,5,10,.35) 50%, rgba(5,5,10,.15) 100%), linear-gradient(0deg, #05050a 0%, transparent 35%); }
+@media (max-width: 760px), (prefers-reduced-motion: reduce) { .h-reel video { display: none; } }

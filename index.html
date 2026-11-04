@@ -34,6 +34,7 @@
   <main>
     <!-- ================= HUB HERO ================= -->
     <section class="h-hero" id="top" aria-labelledby="hub-title">
+      <div class="h-reel" aria-hidden="true"><video muted loop playsinline preload="none" poster="assets/media/worlds-poster.jpg" data-src="assets/media/worlds.mp4"></video></div>
       <div class="wrap">
         <div class="u-kicker">Independent studio <b>·</b> Games <b>·</b> Creator tools</div>
         <h1 id="hub-title" class="u-brand" aria-label="Sinciety"><span class="u-brand-text" data-chars>SINCIETY</span></h1>
@@ -67,7 +68,7 @@
           </div>
           <div class="h-panel-shade"></div>
           <div class="wrap h-panel-copy">
-            <div class="h-index">01 / 03</div>
+            <div class="h-index">01 / 04</div>
             <div class="u-status"><i></i>In development · Game</div>
             <h3 id="p1">Sinciety Online</h3>
             <p>An original superhero game. The sky over Neos City has torn open, and a new generation of heroes is rising to meet it.</p>
@@ -82,7 +83,7 @@
           </div>
           <div class="h-panel-shade"></div>
           <div class="wrap h-panel-copy">
-            <div class="h-index">02 / 03</div>
+            <div class="h-index">02 / 04</div>
             <div class="u-status live"><i></i>Available now · Windows</div>
             <h3 id="p2">Clipciety</h3>
             <p>The AI clipping app for streamers. It catches your best moments live, edits them into vertical clips with captions, and posts the ones you choose. In development: <a href="clipciety/voiciety.html" style="color:#7fe9ff">Voiciety</a>, original character voices and chat walkers.</p>
@@ -94,11 +95,25 @@
           <div class="h-media"><canvas class="census-canvas" aria-hidden="true"></canvas></div>
           <div class="h-panel-shade"></div>
           <div class="wrap h-panel-copy">
-            <div class="h-index">03 / 03</div>
+            <div class="h-index">03 / 04</div>
             <div class="u-status live"><i></i>Live now · Web app</div>
             <h3 id="p3">DCUO Codex</h3>
             <p>Search any DC Universe Online character and inspect their stats, with the source behind every number. An unofficial fan project, not affiliated with Daybreak Games or DC.</p>
             <div class="actions"><a class="btn h-btn" href="https://codex.sinciety.org">Launch Codex ↗</a><a class="btn ghost" href="census/">Learn more</a></div>
+          </div>
+        </article>
+        <article class="h-panel" style="--c:#7fe9ff; --c2:#ff3d9a" aria-labelledby="p4">
+          <div class="h-media">
+            <picture><source media="(max-width: 760px)" srcset="assets/media/arena-poster-m.jpg"><img src="assets/media/arena-poster.jpg" alt="" loading="lazy" decoding="async"></picture>
+            <video muted loop playsinline preload="none" data-desktop="assets/media/arena" data-mobile="assets/media/arena-m"></video>
+          </div>
+          <div class="h-panel-shade"></div>
+          <div class="wrap h-panel-copy">
+            <div class="h-index">04 / 04</div>
+            <div class="u-status live"><i></i>Registration open · Dec 11–12</div>
+            <h3 id="p4">Winter Showdown</h3>
+            <p>Sinciety's Marvel Rivals community tournament. Grab your team and claim your spot before the lights go up.</p>
+            <div class="actions"><a class="btn h-btn" href="tournaments/">Enter the arena →</a></div>
           </div>
         </article>
       </div>
@@ -173,5 +188,6 @@
     import { startHero } from './assets/hero3d.js';
     startHero(document.getElementById('scene3d'), { intro: window.SINCIETY_INTRO });
   </script>
+  <script src="assets/cinema.js" defer></script>
 </body>
 </html>
