@@ -27,11 +27,12 @@
     if (!v || reduced) return;
     const src = v.dataset.src || ((mobile ? v.dataset.mobile : v.dataset.desktop) + (webm ? '.webm' : '.mp4'));
     if ('IntersectionObserver' in window) {
+      let t = 0;
       new IntersectionObserver(([e]) => {
+        clearTimeout(t);
         if (e.isIntersecting) {
-          if (!v.src) v.src = src;
-          v.play().then(() => panel.classList.add('playing')).catch(() => {});
-        } else v.pause();
+          t = setTimeout(() => { if (!v.src) v.src = src; v.play().then(() => panel.classList.add('playing')).catch(() => {}); }, 250);
+        } else { v.pause(); if (mobile && v.src) { v.removeAttribute('src'); v.load(); panel.classList.remove('playing'); } }
       }, { rootMargin: '200px 0px', threshold: 0.01 }).observe(panel);
     }
   });
@@ -62,7 +63,7 @@
     let fx = false, cur = -1;
     const media = (i, on) => {
       const w = worlds[i]; if (!w) return; const v = w.querySelector('video'), cv = w.querySelector('canvas');
-      if (v) { if (on) { if (!v.src) v.src = mobile ? v.dataset.mobile : v.dataset.desktop; v.play().catch(() => {}); } else v.pause(); }
+      if (v) { if (on) { if (!v.src) v.src = mobile ? v.dataset.mobile : v.dataset.desktop; v.play().catch(() => {}); } else { v.pause(); if (mobile && v.getAttribute('src')) { v.removeAttribute('src'); v.load(); } } }
       if (cv && on && !fx && window.startCensusFx) { fx = true; window.startCensusFx(cv, { density: 0.9, offsetX: 0.5 }); }
     };
     const render = (p) => {

@@ -124,7 +124,7 @@
     (function raf(time) { lenis.raf(time); requestAnimationFrame(raf); })(performance.now());
     document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
+      if (target) { e.preventDefault(); const far = Math.abs(target.getBoundingClientRect().top) > innerHeight * 2.5; lenis.scrollTo(target, { offset: -70, immediate: far }); }
     }));
   }
 
