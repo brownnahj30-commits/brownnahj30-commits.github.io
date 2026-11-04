@@ -3,21 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Register for Winter Showdown on Sinciety.">
   <title>Tournaments · Sinciety</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../assets/universe.css">
+  <style>
+    body { background: radial-gradient(ellipse at 60% 0%, #152744, #070d19 58%); }
+    .tournament-head { padding-block: clamp(2rem, 5vw, 4rem) 1.75rem; }
+    .tournament-head .u-eyebrow { margin-top: 2rem; }
+    .tournament-frame { display: block; width: 100%; height: 1250px; border: 0; background: #070d19; }
+    .event-fallback { margin-top: 1rem; font-size: .875rem; }
+    .event-fallback a { color: #b3dcfa; }
+    @media (max-width: 560px) { .tournament-frame { height: 1600px; } }
+  </style>
 </head>
 <body>
-  <main class="wrap" style="padding-block:clamp(4rem,10vw,8rem)">
-    <a class="brand" href="../">← Sinciety</a>
-    <p class="u-eyebrow" style="margin-top:3rem">Sinciety events</p>
-    <h1 class="u-title">Tournaments</h1>
-    <p class="u-lede">Find Sinciety tournaments and registration details.</p>
-    <section aria-labelledby="winter-showdown" style="margin-top:3rem">
-      <h2 id="winter-showdown">Winter Showdown</h2>
-      <p>Visit the event page for registration details and tournament updates. Already signed up? Keep using the same event page.</p>
-      <div class="actions"><a class="btn u-btn" href="https://sinciety-winter-showdown.brownnahj30.workers.dev/">Open Winter Showdown ↗</a></div>
-    </section>
+  <main>
+    <header class="wrap tournament-head">
+      <a class="brand" href="../">← Sinciety</a>
+      <p class="u-eyebrow">Sinciety tournaments</p>
+      <h1 class="u-title">Winter Showdown</h1>
+      <p class="u-lede">December 11–12, 2026 · Marvel Rivals community tournament</p>
+      <p class="event-fallback"><a href="https://sinciety-winter-showdown.brownnahj30.workers.dev/#apply">Open registration in its own page ↗</a></p>
+    </header>
+    <iframe id="winter-registration" class="tournament-frame" title="Winter Showdown registration and event details" src="https://sinciety-winter-showdown.brownnahj30.workers.dev/?embed=sinciety"></iframe>
   </main>
+  <script>
+    const registration = document.getElementById('winter-registration');
+    const eventOrigin = new URL(registration.src).origin;
+    window.addEventListener('message', ({ origin, source, data }) => {
+      if (origin !== eventOrigin || source !== registration.contentWindow || data?.type !== 'sinciety-winter-height') return;
+      if (Number.isInteger(data.height) && data.height >= 300 && data.height <= 20000) {
+        registration.style.height = data.height + 'px';
+      }
+    });
+  </script>
 </body>
 </html>
