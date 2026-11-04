@@ -1,7 +1,9 @@
 /* Voiciety walkers: public-domain legends (folklore, mythology, classic books) drawn in Sinciety's own style, that stroll along the bottom of the stream, one per chatter.
    Vanilla JS, no dependencies. Used by the OBS overlay and the sinciety.org demo.
    const stage = Walkers.create(containerEl, { premium, maxWalkers });
-   stage.chat({ user, display, color, text });  stage.speak({ user, display, color }, durationMs);  stage.quiet(user) */
+   stage.chat({ user, display, color, text, premium, who, supporter });  stage.speak({ user, display, color }, durationMs);  stage.quiet(user)
+   stage.unlock({ user, display, color, who, supporter, message });  stage.walker({ user, who, name })
+   premium/who/supporter are per chatter (viewer rewards); without them the stage-wide premium setting decides. */
 (function (global) {
   'use strict';
   const NS = 'http://www.w3.org/2000/svg';
@@ -347,6 +349,11 @@
   @keyframes vw-blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
   .vw-tag{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);font:700 11px/1 system-ui;color:#fff;padding:3px 7px;border-radius:999px;white-space:nowrap;opacity:0;transition:opacity .3s}
   .vw.showtag .vw-tag{opacity:1}
+  .vw-name.star::before{content:"\\2605  ";color:#ffd84a}
+  .vw.unlocked{z-index:6}
+  .vw.unlocked .vw-body{animation:vw-unlock 1.1s cubic-bezier(.3,1.5,.5,1);filter:drop-shadow(0 0 10px #ffd84a) drop-shadow(0 0 26px #ffb02e)}
+  .vw.unlocked .vw-tag{opacity:1;background:linear-gradient(90deg,#ffb02e,#ffd84a)!important;color:#1b1530;font-size:13px;line-height:1.25;padding:5px 10px;bottom:118px;white-space:normal;width:max-content;max-width:230px;text-align:center}
+  @keyframes vw-unlock{0%{transform:scale(.4) rotate(-12deg)}45%{transform:translateY(-34px) scale(1.25) rotate(6deg)}100%{transform:none}}
   @media (prefers-reduced-motion:reduce){.vw *{animation:none!important}}`;
 
   function create(container, opts = {}) {
@@ -357,12 +364,12 @@
     const W = () => stage.clientWidth || innerWidth;
     stage.style.height = '170px';
 
-    function spawn(user, display, color) {
+    function spawn(user, display, color, p = {}) {
       if (walkers.size >= maxWalkers) {                       // make room: the quietest chatter leaves
         let oldest = null; for (const w of walkers.values()) if (!oldest || w.last < oldest.last) oldest = w;
         if (oldest) remove(oldest.user);
       }
-      const L = look(user, premium);
+      const L = p.who && CAST[p.who] ? { who: p.who } : look(user, premium || !!p.premium);
       const node = document.createElement('div'); node.className = 'vw' + (hash(user + '#row') % 2 ? ' row2' : '');
       const body = document.createElement('div'); body.className = 'vw-body'; body.appendChild(chibi(L)); node.appendChild(body);
       const name = document.createElement('div'); name.className = 'vw-name'; name.textContent = display; name.style.color = color || '#fff'; node.appendChild(name);
@@ -374,7 +381,8 @@
       stage.appendChild(node); walkers.set(user, w);
       return w;
     }
-    function get(user, display, color) { return walkers.get(user) || spawn(user, display || user, color); }
+    function get(user, display, color, p) { return walkers.get(user) || spawn(user, display || user, color, p); }
+    function morph(w, who) { if (who && CAST[who] && who !== w.who) { w.who = who; w.body.replaceChildren(chibi({ who })); flash(w, 'hop', 520); } }
     function remove(user) { const w = walkers.get(user); if (!w) return; walkers.delete(user); w.node.style.opacity = '0'; setTimeout(() => w.node.remove(), 900); }
     function flash(w, cls, ms) { w.node.classList.remove(cls); void w.node.offsetWidth; w.node.classList.add(cls); clearTimeout(w.timers[cls]); w.timers[cls] = setTimeout(() => w.node.classList.remove(cls), ms); }
 
@@ -400,9 +408,11 @@
     requestAnimationFrame(tick);
 
     return {
-      chat({ user, display, color, text }) {
+      chat({ user, display, color, text, premium: pp, who, supporter }) {
         if (!enabled) return;
-        const w = get(user, display, color); w.last = Date.now();
+        const w = get(user, display, color, { premium: pp, who }); w.last = Date.now();
+        morph(w, who);
+        if (supporter !== undefined) w.node.querySelector('.vw-name').classList.toggle('star', !!supporter);
         if (text) { w.bubble.textContent = text.length > 90 ? text.slice(0, 88) + '…' : text; flash(w, 'chatting', 4200); }
         flash(w, 'hop', 520);
       },
@@ -415,6 +425,18 @@
         if (character_name) { w.tag.textContent = character_name; w.tag.style.background = glow || '#7d4dff'; flash(w, 'showtag', Math.max(ms, 1500)); }
         w.node.classList.add('talking'); clearTimeout(w.timers.talk);
         w.timers.talk = setTimeout(() => w.node.classList.remove('talking'), ms || 2500);
+      },
+      unlock({ user, display, color, who, supporter, message }) {
+        if (!enabled) return;
+        const w = get(user, display, color, { premium: true, who }); w.last = Date.now();
+        morph(w, who);
+        if (supporter) w.node.querySelector('.vw-name').classList.add('star');
+        w.tag.textContent = message || 'Unlocked!'; flash(w, 'unlocked', 6000);
+      },
+      walker({ user, who, name }) {
+        const w = walkers.get(user); if (!w || !enabled) return;
+        morph(w, who); w.last = Date.now();
+        if (name) { w.tag.textContent = name; w.tag.style.background = '#7d4dff'; flash(w, 'showtag', 2200); }
       },
       quiet(user) { const w = user ? walkers.get(user) : null; for (const x of (w ? [w] : walkers.values())) x.node.classList.remove('talking'); },
       config(c) { premium = !!c.premium; maxWalkers = c.max_walkers || maxWalkers; enabled = c.walkers !== false; stage.style.display = enabled ? '' : 'none'; },
