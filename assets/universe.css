@@ -202,3 +202,42 @@ html:not(.js) .u-vision-line .sw, .no-motion .u-vision-line .sw { opacity: 1; }
 
 .u-brand-sub { display: block; margin-top: .12em; font-size: .3em; letter-spacing: .62em; padding-left: .3em; color: transparent;
   background: linear-gradient(90deg, #ffb27a, #ff7a2e 40%, #9d6bff); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 18px rgba(255,122,46,.45)); }
+
+/* ================= THE BATTLE: a pinned, scroll-scrubbed cinematic ================= */
+.u-saga { position: relative; background: #000; }
+.u-saga-stage { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; isolation: isolate; }
+.u-saga-poster img, .u-saga-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.u-saga-video { opacity: 0; transition: opacity .8s ease; }
+.u-saga.ready .u-saga-video { opacity: 1; }
+.u-saga-shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,0) 38%), linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 26%),
+              radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.6) 100%); }
+.u-saga-bars i { height: 6vh; }
+.u-saga-head { position: absolute; left: 0; right: 0; top: calc(6vh + 70px); z-index: 3; }
+.u-saga-title { margin: 14px 0 0; font: 700 clamp(28px, 4vw, 54px)/1 var(--display); text-transform: uppercase; letter-spacing: .04em; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,.8); }
+.u-saga-chapters { list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; bottom: calc(6vh + 40px); z-index: 3; }
+.u-saga-chapters li { position: absolute; left: max(24px, calc((100vw - 1200px) / 2 + 24px)); right: 24px; bottom: 0; max-width: 760px;
+  opacity: 0; transform: translateY(30px); filter: blur(8px); transition: opacity .6s ease, transform .8s cubic-bezier(.2,.8,.2,1), filter .6s ease; }
+.u-saga-chapters li.on { opacity: 1; transform: none; filter: none; }
+.u-saga-chapters b { display: block; font: 500 12px/1 var(--mono); letter-spacing: .4em; color: var(--c); margin-bottom: 12px; text-shadow: 0 0 18px var(--c); }
+.u-saga-chapters strong { display: block; font: 700 clamp(40px, 8vw, 120px)/.9 var(--display); text-transform: uppercase; letter-spacing: .01em;
+  background: linear-gradient(180deg, #fff 35%, color-mix(in srgb, var(--c) 75%, #fff)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--c) 45%, transparent)) drop-shadow(0 6px 24px rgba(0,0,0,.7)); }
+.u-saga-chapters span { display: block; margin-top: 14px; font-size: clamp(16px, 1.6vw, 20px); color: #e3e5ee; text-shadow: 0 2px 16px rgba(0,0,0,.9); max-width: 44ch; }
+.u-saga-meter { position: absolute; left: 0; right: 0; bottom: 6vh; height: 2px; z-index: 3; background: rgba(255,255,255,.12); }
+.u-saga-meter i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0);
+  background: linear-gradient(90deg, #ff3a4a, #36e0ff 22%, #ff5a2e 42%, #b46bff 58%, #7dff4a 72%, #fff 86%, #ffb36b); box-shadow: 0 0 14px rgba(255,255,255,.5); }
+
+/* without motion (or before the script runs) the chapters read as a list over the still */
+.u-saga:not(.live) .u-saga-stage { height: auto; min-height: 100vh; padding: calc(6vh + 180px) 0 calc(6vh + 60px); }
+.u-saga:not(.live) .u-saga-chapters { position: relative; bottom: auto; display: grid; gap: 28px; padding: 0 24px; max-width: 1200px; margin: 0 auto; }
+.u-saga:not(.live) .u-saga-chapters li { position: relative; left: auto; right: auto; opacity: 1; transform: none; filter: none; }
+.u-saga:not(.live) .u-saga-chapters strong { font-size: clamp(30px, 5vw, 60px); }
+.u-saga:not(.live) .u-saga-meter, .u-saga:not(.live) .u-saga-video { display: none; }
+.u-saga:not(.live) .u-saga-shade { background: rgba(0,0,0,.6); }
+
+@media (max-width: 760px) {
+  .u-saga-head { top: calc(6vh + 64px); }
+  .u-saga-chapters { bottom: calc(6vh + 28px); }
+  .u-saga-chapters li { left: 20px; right: 20px; }
+}

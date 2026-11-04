@@ -200,6 +200,42 @@
   });
   if (document.querySelector('.u-trailer')) G.from('.u-trailer .cinema', { y: 80, scale: 0.92, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: '.u-trailer', start: 'top 90%', end: 'top 45%', scrub: 0.8 } });
 
+
+  // ---------- the battle: pinned section, scroll scrubs the cinematic ----------
+  (() => {
+    const saga = document.querySelector('.u-saga'); if (!saga) return;
+    const v = saga.querySelector('.u-saga-video'), chapters = [...saga.querySelectorAll('.u-saga-chapters li')], meter = saga.querySelector('.u-saga-meter i');
+    const DUR = 22, phone = innerWidth <= 760;
+    saga.classList.add('live');
+    let target = 0, shown = -1, loaded = false, active = -1;
+    const load = () => {
+      if (loaded) return; loaded = true;
+      // fetch the whole clip up front so seeking is instant in every browser
+      fetch(phone ? v.dataset.mobile : v.dataset.desktop).then((r) => r.blob()).then((b) => {
+        v.src = URL.createObjectURL(b);
+        v.addEventListener('loadeddata', () => { saga.classList.add('ready'); shown = -1; }, { once: true });
+        v.load();
+      }).catch(() => {});
+    };
+    const setChapter = (t) => {
+      let i = 0; chapters.forEach((c, k) => { if (t >= +c.dataset.at) i = k; });
+      if (i !== active) { chapters.forEach((c, k) => c.classList.toggle('on', k === i)); active = i; }
+    };
+    setChapter(0);
+    ST.create({ trigger: saga, start: 'top top', end: () => '+=' + innerHeight * (phone ? 5 : 6), pin: '.u-saga-stage', scrub: true, anticipatePin: 1, invalidateOnRefresh: true,
+      onEnter: load, onEnterBack: load,
+      onUpdate: (self) => { target = self.progress * (DUR - 0.05); setChapter(target); if (meter) meter.style.transform = `scaleX(${self.progress})`; } });
+    ST.create({ trigger: saga, start: 'top 250%', onEnter: load });
+    // ease the playhead toward the scroll position; seek only when a frame is ready
+    let cur = 0;
+    const tick = () => {
+      cur += (target - cur) * 0.18;
+      if (v.readyState >= 2 && !v.seeking && Math.abs(cur - shown) > 1 / 48) { v.currentTime = cur; shown = cur; }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
+
   // ---------- vision: parallax world + words light up as you read ----------
   G.fromTo('.u-vision-bg', { yPercent: -10, scale: 1.12 }, { yPercent: 10, scale: 1, ease: 'none', scrollTrigger: { trigger: '.u-vision', start: 'top bottom', end: 'bottom top', scrub: true } });
   G.to('.u-vision-line .sw', { opacity: 1, stagger: 0.08, ease: 'none', scrollTrigger: { trigger: '.u-vision-line', start: 'top 75%', end: 'bottom 40%', scrub: true } });
