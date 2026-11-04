@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Voiciety · Character voices and chat walkers</title>
-  <meta name="description" content="In development: Voiciety gives your Twitch chat a voice: 12 original cartoon character voices and anime-style chat walkers, built into Clipciety. Runs on your PC, with no per-message fees.">
+  <meta name="description" content="In development: Voiciety gives your Twitch chat a voice: 40 character voices (originals and public-domain legends) and anime-style chat walkers, built into Clipciety. Runs on your PC, with no per-message fees.">
   <meta name="theme-color" content="#05050a">
   <link rel="icon" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,12 +23,14 @@
     .vo-soon i { width: 7px; height: 7px; border-radius: 50%; background: #ffd84a; box-shadow: 0 0 10px #ffd84a; }
     .vo-parade { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; overflow: hidden; }
     .vo-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, transparent, #9d6bff, #7fe9ff, transparent); box-shadow: 0 0 20px #9d6bff; }
+    .vo-group { margin: 44px 0 0; font-size: 24px; text-transform: uppercase; }
+    .vo-group small { font: 500 11px/1 var(--mono); letter-spacing: .2em; color: #7fe9ff; margin-left: 10px; }
     .vo-cast { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; margin-top: 40px; }
     .vo-card { position: relative; display: grid; gap: 10px; padding: 20px; }
     .vo-card .top { display: flex; align-items: center; gap: 10px; }
     .vo-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 14px var(--c); }
-    .vo-card h3 { font-size: 22px; text-transform: uppercase; margin: 0; }
-    .vo-badge { margin-left: auto; font: 500 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); color: #c9cbd8; }
+    .vo-card h3 { font-size: 19px; line-height: 1.05; text-transform: uppercase; margin: 0; }
+    .vo-badge { flex-shrink: 0; white-space: nowrap; margin-left: auto; font-size: 9px !important; letter-spacing: .1em !important; font: 500 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); color: #c9cbd8; }
     .vo-badge.free { border-color: rgba(61,255,168,.5); color: #a8ffd8; }
     .vo-card p { color: #c4c6d4; margin: 0; font-size: 14px; min-height: 2.6em; }
     .vo-play { display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 9px 14px 9px 9px; border-radius: 999px; border: 1px solid rgba(255,255,255,.16); background: rgba(10,10,20,.6); color: #fff; font-weight: 600; cursor: pointer; }
@@ -66,7 +68,7 @@
         <div class="eyebrow reveal">Clipciety presents</div>
         <h1 id="vo-title" class="vo-title">Voiciety</h1>
         <p class="vo-tag reveal">Give your chat a voice.</p>
-        <p class="lede reveal">Twelve original cartoon voices and a crowd of anime-style chat walkers, built right into Clipciety. Your viewers pick a character, type a message, and it speaks on stream while their walker lights up.</p>
+        <p class="lede reveal">Forty character voices, from Sinciety originals to public-domain legends like Dracula, Zeus and Santa Claus, plus a crowd of anime-style chat walkers, built right into Clipciety. Your viewers pick a character, type a message, and it speaks on stream while their walker lights up.</p>
         <div class="actions reveal" style="justify-content:center"><a class="btn" href="#cast">Hear the cast</a><a class="btn ghost" href="#how">How it works</a></div>
         <div class="vo-soon reveal"><i></i>In development · coming to Clipciety</div>
       </div>
@@ -75,9 +77,12 @@
 
     <section class="block" id="cast" aria-labelledby="cast-h"><div class="wrap">
       <div class="eyebrow reveal">The cast</div>
-      <h2 id="cast-h" class="reveal">Meet the <span class="grad">voices</span></h2>
-      <p class="sub reveal">Every character is an original Sinciety creation. Press play to hear them. These are real samples from the voice engine.</p>
-      <div class="vo-cast" id="castGrid"></div>
+      <h2 id="cast-h" class="reveal">Meet all <span class="grad">40 voices</span></h2>
+      <p class="sub reveal">Sinciety originals plus legends from folklore, mythology and classic literature, all voiced our own way. Press play to hear them. These are real samples from the voice engine.</p>
+      <h3 class="vo-group reveal">Sinciety originals</h3>
+      <div class="vo-cast" id="castOriginal"></div>
+      <h3 class="vo-group reveal">Legends <small>public domain</small></h3>
+      <div class="vo-cast" id="castLegend"></div>
     </div></section>
 
     <section class="block" id="how" aria-labelledby="how-h" style="padding-top:0"><div class="wrap">
@@ -105,7 +110,7 @@
       <p class="sub reveal">Voiciety runs on your own PC, so there's no cloud bill behind every message. The voices download once and then work offline.</p>
       <div class="vo-tiers">
         <div class="glass reveal" data-tilt><h3>Free</h3><ul><li>Nova and Unit-7 voices</li><li>3 walker styles</li><li>Every safety control</li></ul></div>
-        <div class="glass reveal" data-tilt style="border-color:rgba(157,107,255,.6)"><h3><span class="grad">Premium</span></h3><ul><li>The full cast of 12 voices</li><li>All 10 walker styles, plus extras</li><li>Included with any paid Clipciety plan (<a href="pricing.html">7-day free trial</a>) or creator code</li></ul></div>
+        <div class="glass reveal" data-tilt style="border-color:rgba(157,107,255,.6)"><h3><span class="grad">Premium</span></h3><ul><li>The full cast of 40 voices</li><li>All 10 walker styles, plus extras</li><li>Included with any paid Clipciety plan (<a href="pricing.html">7-day free trial</a>) or creator code</li></ul></div>
       </div>
       <div class="glass reveal" style="margin-top:16px;padding:22px 26px"><h3 style="font-size:20px;text-transform:uppercase">Built to stay safe</h3>
         <p style="margin:8px 0 0;color:#c4c6d4">Links are never read aloud. You choose who can talk (everyone, subs or mods only), set cooldowns and a length limit, add blocked words, and mods can skip any line. Your overlay link has its own private key that you can reset anytime.</p></div>
@@ -113,7 +118,7 @@
   </main>
 
   <footer class="site"><div class="wrap">
-    <span>© 2026 Sinciety · Voiciety characters are original works by Sinciety. Voices use the open-source Kokoro model (Apache-2.0).</span>
+    <span>© 2026 Sinciety · Voiciety originals are works by Sinciety; legends are public-domain characters voiced our own way. Voices use the open-source Kokoro model (Apache-2.0).</span>
     <span><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span>
   </div></footer>
 
@@ -123,18 +128,46 @@
   <script src="../assets/walkers.js"></script>
   <script>
     const CAST = [
-      ['narrator', 'Nova', 'Clear, friendly default voice.', '#7fe9ff', 0, 'Welcome to the stream, everyone!'],
-      ['unit7', 'Unit-7', 'Monotone robot announcer. BEEP. BOOP.', '#9aa4bd', 0, 'Greetings, human. Your clip has been saved.'],
-      ['fizz', 'Fizz', 'Hyper little sea sprite. Talks way too fast.', '#ffd84a', 1, 'Oh my gosh oh my gosh that was SO cool!'],
-      ['barkley', 'Barkley', 'Goofy, nervous pup. Scared of literally everything.', '#c98a4b', 1, 'Uh, guys? Is it supposed to be this dark in here?'],
-      ['rocco', 'Rocco', 'Slacker raccoon. Zero chill, all excuses.', '#8fa0b8', 1, 'Nah man, I was totally gonna do that later.'],
-      ['jay', 'Jay', 'Laid-back bird. Never in a hurry, ever.', '#4f8cff', 1, 'Eh, relax dude. We got all the time in the world.'],
-      ['zorg', 'Overlord Zorg', 'Galactic conqueror. Very dramatic about everything.', '#7dff4a', 1, 'Kneel, puny streamers, before your new overlord!'],
-      ['kaze', 'Sensei Kaze', 'Anime-style narrator. Every sentence is a final battle.', '#ff5a2e', 1, 'This... is the power... of a true streamer.'],
-      ['mochi', 'Mochi', 'Sparkly, upbeat and endlessly cheerful.', '#ff7ad9', 1, 'Yay! Thank you so much for the follow!'],
-      ['grumble', 'Grandpa Grumble', 'Cranky old-timer. Back in his day, streams were better.', '#b8a27a', 1, 'Back in my day, we had to walk uphill to the stream.'],
-      ['vex', 'Vex', 'Smooth villain. Every word is a threat.', '#b46bff', 1, 'How delightful. Another victim joins the chat.'],
-      ['pip', 'Pip', 'Tiny gremlin. Gets louder when excited.', '#3dffa8', 1, 'Hehe! More snacks! MORE SNACKS!'],
+      ["narrator", "Nova", "Clear, friendly default voice.", "#7fe9ff", 0, "Welcome to the stream, everyone!", "original"],
+      ["unit7", "Unit-7", "Monotone robot announcer. BEEP. BOOP.", "#9aa4bd", 0, "Greetings, human. Your clip has been saved.", "original"],
+      ["fizz", "Fizz", "Hyper little sea sprite. Talks way too fast.", "#ffd84a", 1, "Oh my gosh oh my gosh that was SO cool!", "original"],
+      ["barkley", "Barkley", "Goofy, nervous pup. Scared of literally everything.", "#c98a4b", 1, "Uh, guys? Is it supposed to be this dark in here?", "original"],
+      ["rocco", "Rocco", "Slacker raccoon. Zero chill, all excuses.", "#8fa0b8", 1, "Nah man, I was totally gonna do that later.", "original"],
+      ["jay", "Jay", "Laid-back bird. Never in a hurry, ever.", "#4f8cff", 1, "Eh, relax dude. We got all the time in the world.", "original"],
+      ["zorg", "Overlord Zorg", "Galactic conqueror. Very dramatic about everything.", "#7dff4a", 1, "Kneel, puny streamers, before your new overlord!", "original"],
+      ["kaze", "Sensei Kaze", "Anime-style narrator. Every sentence is a final battle.", "#ff5a2e", 1, "This... is the power... of a true streamer.", "original"],
+      ["mochi", "Mochi", "Sparkly, upbeat and endlessly cheerful.", "#ff7ad9", 1, "Yay! Thank you so much for the follow!", "original"],
+      ["grumble", "Grandpa Grumble", "Cranky old-timer. Back in his day, streams were better.", "#b8a27a", 1, "Back in my day, we had to walk uphill to the stream.", "original"],
+      ["vex", "Vex", "Smooth villain. Every word is a threat.", "#b46bff", 1, "How delightful. Another victim joins the chat.", "original"],
+      ["pip", "Pip", "Tiny gremlin. Gets louder when excited.", "#3dffa8", 1, "Hehe! More snacks! MORE SNACKS!", "original"],
+      ["saltbeard", "Captain Saltbeard", "Pirate captain. Every loot drop is treasure.", "#2ec4b6", 1, "Arr! That loot drop be pure treasure, crew!", "original"],
+      ["dusty", "Sheriff Dusty", "Slow-talking sheriff. This chat ain't big enough.", "#c98a4b", 1, "Well now, this chat ain't big enough for the both of us.", "original"],
+      ["bolt", "Bolt the Butler", "Robot butler. Impeccable manners, slight rattle.", "#7fe9ff", 1, "Your clip is ready, sir. Shall I polish the highlights?", "original"],
+      ["hank", "Hype Hank", "Sports announcer. EVERY. PLAY. IS. HUGE.", "#ff5a2e", 1, "AND HE DOES IT! WHAT A PLAY! UNBELIEVABLE!", "original"],
+      ["voltz", "Dr. Voltz", "Mad scientist. The stream... it's ALIVE!", "#7dff4a", 1, "It's alive! The stream is ALIVE! Ha ha ha!", "original"],
+      ["snooze", "Snooze", "Sleepy cat. Will talk right after this nap.", "#b8a27a", 1, "Mmm... five more minutes... then I'll watch the stream.", "original"],
+      ["wisp", "Wisp", "Friendly ghost. A little transparent about feelings.", "#c9d6ff", 1, "Boo! Oh, sorry. I didn't mean to scare the chat.", "original"],
+      ["squeaks", "Squeaks", "Tiny mouse. Very big opinions.", "#f4f4f8", 1, "Excuse me! I have a very big opinion about this!", "original"],
+      ["santa", "Santa Claus", "Jolly, warm and always checking his list.", "#e5484d", 1, "Ho ho ho! I see who's been a good chatter this year!", "legend"],
+      ["dracula", "Count Dracula", "Centuries-old vampire. Prefers the night shift.", "#8b1e3f", 1, "Good evening. I never drink... energy drinks.", "legend"],
+      ["monster", "The Monster", "Stitched together, misunderstood, very loud.", "#6b8f4e", 1, "Stream... GOOD! Monster... LIKE STREAM!", "legend"],
+      ["sherlock", "Sherlock Holmes", "Deduces everything about you from one message.", "#8a7350", 1, "Elementary. You are watching this stream on a Tuesday.", "legend"],
+      ["hatter", "The Hatter", "It's always tea time. Always.", "#b46bff", 1, "Why is a stream like a teapot? Nobody knows! Tea time!", "legend"],
+      ["cheshire", "Cheshire Cat", "Grins first, explains never.", "#ff7ad9", 1, "We're all a little mad in this chat, aren't we?", "legend"],
+      ["wizard", "The Great Wizard", "Great and powerful. Mostly behind a curtain.", "#3dffa8", 1, "Pay no attention to the streamer behind the webcam!", "legend"],
+      ["pinocchio", "Pinocchio", "Wooden puppet. Definitely telling the truth.", "#c98a4b", 1, "I'm a real streamer! My nose didn't grow, I promise!", "legend"],
+      ["robin", "Robin Hood", "Takes from the rich, gives to the chat.", "#3dd68c", 1, "I take from the rich, and I give to the chat!", "legend"],
+      ["arthur", "King Arthur", "Rightful king. Speaks only in royal decrees.", "#ffd84a", 1, "By royal decree, this clip shall be legendary!", "legend"],
+      ["merlin", "Merlin", "Ancient wizard. Has seen this play before.", "#4f8cff", 1, "I have seen this play before... in the year five hundred.", "legend"],
+      ["ahab", "Captain Ahab", "Obsessed. Absolutely, completely obsessed.", "#2e5d8a", 1, "That boss... I will hunt it to the ends of the earth!", "legend"],
+      ["zeus", "Zeus", "King of the gods. Thunder included.", "#ffe066", 1, "Behold! Thunder for this incredible play!", "legend"],
+      ["thor", "Thor", "Norse god of thunder. Hammer-ready.", "#7fb4ff", 1, "By the hammer, that was a mighty victory!", "legend"],
+      ["loki", "Loki", "Norse trickster. Probably lying right now.", "#2fbf71", 1, "Trust me, chat. I would never lie to you. Probably.", "legend"],
+      ["anubis", "Anubis", "Guardian of the underworld. Weighs every message.", "#c9a227", 1, "Your message has been weighed... and found worthy.", "legend"],
+      ["medusa", "Medusa", "One look and chat turns to stone.", "#4ee0a0", 1, "Look at me, chat. Go on. Just one little look.", "legend"],
+      ["horseman", "Headless Horseman", "Rides at midnight. Voice comes from... somewhere.", "#ff9f40", 1, "I ride at midnight... to watch your stream.", "legend"],
+      ["toothfairy", "Tooth Fairy", "Collects teeth. Pays in sparkles.", "#f4b4ff", 1, "Thank you for the tooth! Here are some sparkles!", "legend"],
+      ["reaper", "The Grim Reaper", "Calm, patient and extremely punctual.", "#9aa4bd", 1, "Relax. I'm only here for the boss fight.", "legend"],
     ];
     // Walker parade (demo names only)
     const stage = Walkers.create(document.getElementById('parade'), { premium: true, maxWalkers: 18, idleMs: 1e9 });
@@ -146,9 +179,9 @@
     if (!reduced) setInterval(() => { const n = crowd[(Math.random() * crowd.length) | 0]; stage.chat({ user: n, display: n, color: tints[crowd.indexOf(n) % tints.length], text: lines[(Math.random() * lines.length) | 0] }); }, 2600);
 
     // Cast grid with real samples; a walker voices each one
-    const grid = document.getElementById('castGrid');
+    const grids = { original: document.getElementById('castOriginal'), legend: document.getElementById('castLegend') };
     let current = null;
-    for (const [id, name, tag, color, premium, line] of CAST) {
+    for (const [id, name, tag, color, premium, line, group] of CAST) {
       const card = document.createElement('article');
       card.className = 'glass vo-card reveal in'; card.style.setProperty('--c', color); card.setAttribute('data-tilt', '6');
       card.innerHTML = `<div class="top"><span class="vo-dot"></span><h3></h3><span class="vo-badge ${premium ? '' : 'free'}">${premium ? 'Premium' : 'Free'}</span></div><p></p><button class="vo-play" type="button"><b>▶</b><span>Play sample</span></button>`;
@@ -164,7 +197,7 @@
         audio.addEventListener('ended', () => card.classList.remove('playing'));
         audio.play().catch(() => card.classList.remove('playing'));
       });
-      grid.appendChild(card);
+      grids[group].appendChild(card);
     }
   </script>
   <script type="module">
