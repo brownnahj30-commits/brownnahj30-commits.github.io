@@ -46,19 +46,19 @@
       <p>You can connect accounts so Clipciety can work with them. Each connection uses that platform's official sign-in, asks for your permission, and can be disconnected in Clipciety (Integrations → Log out) or in the platform's own account settings at any time.</p>
       <div class="table-scroll"><table>
         <tr><th>Platform</th><th>What Clipciety accesses</th><th>What it's used for</th></tr>
-        <tr><td>TikTok</td><td>Your basic profile (open ID, display name, avatar) through the <code>user.info.basic</code> permission, and the ability to post videos through <code>video.publish</code>.</td><td>Showing which account you're posting to, and posting the clips you choose, with the privacy and interaction settings you select. Clipciety only posts when you click Post.</td></tr>
+        <tr><td>TikTok LIVE (optional)</td><td>Public comments, gifts, likes and follows in your own TikTok LIVE, read using the @username you enter. No TikTok sign-in is used.</td><td>Showing your TikTok chat in Sinciety CHAT and reading it aloud with Voiciety while you're live. It's off until you turn it on.</td></tr>
         <tr><td>YouTube (Google)</td><td>Your channel's basic information, and permission to upload videos.</td><td>Showing which channel you're posting to, and uploading the clips you choose as Shorts. Clipciety only uploads when you click Post.</td></tr>
         <tr><td>Twitch</td><td>Chat messages in your channel while you're live, your current viewer count, and your follower total.</td><td>Finding the moments your audience reacted to, and showing your stream statistics. Chat is processed and stored on your computer.</td></tr>
         <tr><td>OBS Studio</td><td>Your stream, recording and replay buffer status, on your own computer.</td><td>Starting live mode when you go live and saving clips from the replay buffer.</td></tr>
       </table></div>
-      <p>When Clipciety posts to TikTok or YouTube, the video and the text you approved (title, caption, hashtags) are sent to that platform. From then on that content is handled under the platform's own terms and privacy policy.</p>
+      <p>When Clipciety posts to YouTube, the video and the text you approved (title, caption, hashtags) are sent to that platform. From then on that content is handled under the platform's own terms and privacy policy.</p>
 
       <h2>4. AI features</h2>
       <p>Writing titles, captions and hashtags with AI is optional and only works if you enter your own Anthropic API key. When you use it, Clipciety sends Anthropic <strong>text only</strong>: the reasons a moment was detected, chat messages from around that moment, and a transcript of what was said in the clip if one exists. Your video is never sent. Anthropic handles this data under its own terms and privacy policy.</p>
       <p>Automatic captions use speech recognition that runs on your computer. The speech model is downloaded once from Hugging Face; your audio is not sent anywhere.</p>
 
       <h2>5. Data from TikTok</h2>
-      <p>Data Clipciety receives from TikTok (your basic profile and the results of posting) is used only to provide the features above, is stored only on your computer, and is not sold, shared with other parties or used for advertising. Disconnecting TikTok in Clipciety deletes the stored TikTok sign-in from your computer.</p>
+      <p>Clipciety doesn't sign in to TikTok or post to it. Data it reads from your TikTok LIVE (public comments, gifts, likes and follows) is used only to show and read out your chat, is stored only on your computer, and is not sold, shared with other parties or used for advertising. Turning TikTok LIVE off in Clipciety stops it straight away.</p>
 
       <h2>6. Keeping and deleting your data</h2>
       <ul>
