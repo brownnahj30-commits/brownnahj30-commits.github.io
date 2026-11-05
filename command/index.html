@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sinciety COMMAND: your streaming control centre</title>
+  <meta name="description" content="Sinciety COMMAND is a free Windows app that puts OBS, your PC, audio devices, streaming apps, profiles, automations and Sinciety CHAT in one control centre.">
+  <meta name="theme-color" content="#07070b">
+  <link rel="icon" href="../assets/media/command/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../assets/universe.css">
+  <style>
+    .cmd { --volt: #4f8cff; --flux: #9d6bff; background: radial-gradient(1200px 800px at 75% 10%, #10183a 0%, #07070b 60%); }
+    .cmd-grid-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+      background-image: linear-gradient(rgba(79,140,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(79,140,255,.07) 1px, transparent 1px);
+      background-size: 56px 56px; mask-image: radial-gradient(ellipse at 60% 20%, #000 0%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 60% 20%, #000 0%, transparent 70%); }
+    .cmd main { position: relative; z-index: 1; }
+    .cmd-hero { padding-top: 140px; display: grid; gap: 34px; }
+    .cmd-hero .u-kicker { color: #8fb5ff; }
+    .cmd-hero .u-kicker b { color: var(--flux); }
+    .cmd-title { margin: 14px 0 0; font: 700 clamp(48px, 9vw, 132px)/.9 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+    .cmd-title small { display: block; font-size: .24em; letter-spacing: .55em; color: #8fb5ff; margin-bottom: .35em; }
+    .cmd-title span { background: linear-gradient(100deg, #fff 10%, #b9cdff 45%, var(--flux) 90%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 40px rgba(79,140,255,.35)); }
+    .cmd-btn { background: linear-gradient(120deg, var(--volt), #7d4dff); color: #fff; box-shadow: 0 14px 44px -12px rgba(79,140,255,.85); }
+    .cmd-btn:hover { color: #fff; filter: brightness(1.1); }
+    .cmd-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; color: #9aa3bd; font-size: 14px; margin-top: 4px; }
+    .cmd-meta i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #36d399; margin-right: 8px; vertical-align: middle; box-shadow: 0 0 10px #36d399; }
+    .cmd-shot { position: relative; margin-top: 10px; border-radius: 18px; overflow: hidden; border: 1px solid rgba(143,181,255,.22);
+      box-shadow: 0 50px 120px -40px rgba(79,140,255,.55), 0 0 0 1px rgba(0,0,0,.6); transform: perspective(1800px) rotateX(8deg); transform-origin: 50% 0; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+    .cmd-shot.in { transform: none; }
+    .cmd-shot img { display: block; width: 100%; height: auto; }
+    .cmd-shot figcaption { position: absolute; right: 12px; bottom: 10px; font: 500 11px var(--mono); color: rgba(255,255,255,.55); background: rgba(0,0,0,.45); padding: 3px 8px; border-radius: 6px; }
+    .cmd-sec { padding-block: clamp(80px, 10vw, 130px); }
+    .cmd .u-eyebrow { color: #8fb5ff; }
+    .cmd .u-eyebrow span { color: var(--flux); border-color: rgba(157,107,255,.45); }
+    .cmd-feat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(28px, 5vw, 70px); align-items: center; margin-top: clamp(60px, 8vw, 110px); }
+    .cmd-feat:nth-child(even) { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+    .cmd-feat:nth-child(even) .cmd-copy { order: 2; }
+    .cmd-copy h3 { font: 700 clamp(26px, 3vw, 38px)/1.05 var(--display); text-transform: uppercase; margin: 10px 0 14px; }
+    .cmd-copy .tag { font: 500 12px var(--mono); letter-spacing: .2em; color: var(--flux); text-transform: uppercase; }
+    .cmd-copy p { color: #c2c8dc; margin: 0 0 14px; }
+    .cmd-copy ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: #aab3cc; font-size: 15px; }
+    .cmd-copy li { padding-left: 22px; position: relative; }
+    .cmd-copy li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 2px; background: linear-gradient(90deg, var(--volt), var(--flux)); }
+    .cmd-pic { border-radius: 14px; overflow: hidden; border: 1px solid rgba(143,181,255,.18); box-shadow: 0 30px 80px -30px rgba(79,140,255,.45); }
+    .cmd-pic img { display: block; width: 100%; height: auto; }
+    .cmd-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin-top: 40px; }
+    .cmd-card { padding: 24px; border-radius: 16px; background: rgba(14,16,30,.72); border: 1px solid rgba(143,181,255,.16); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .cmd-card h4 { font: 700 19px var(--display); text-transform: uppercase; margin: 6px 0 8px; }
+    .cmd-card p { margin: 0; color: #aab3cc; font-size: 15px; }
+    .cmd-card b.k { font: 500 12px var(--mono); color: var(--volt); letter-spacing: .14em; }
+    .cmd-plans { width: 100%; border-collapse: collapse; margin-top: 36px; font-size: 15px; }
+    .cmd-plans th, .cmd-plans td { padding: 14px 12px; border-bottom: 1px solid rgba(143,181,255,.12); text-align: center; }
+    .cmd-plans th:first-child, .cmd-plans td:first-child { text-align: left; color: #c2c8dc; }
+    .cmd-plans thead th { font: 700 15px var(--display); text-transform: uppercase; letter-spacing: .08em; color: #fff; }
+    .cmd-plans thead th:nth-child(4) { color: #b9a1ff; }
+    .cmd-note { color: #8a93ad; font-size: 14px; margin-top: 18px; max-width: 760px; }
+    .cmd-steps { counter-reset: s; display: grid; gap: 14px; margin-top: 30px; max-width: 760px; }
+    .cmd-steps li { list-style: none; counter-increment: s; padding: 16px 18px 16px 62px; position: relative; border-radius: 14px; background: rgba(14,16,30,.6); border: 1px solid rgba(143,181,255,.12); color: #c2c8dc; }
+    .cmd-steps li::before { content: counter(s); position: absolute; left: 18px; top: 14px; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font: 700 15px var(--display); color: #fff; background: linear-gradient(135deg, var(--volt), var(--flux)); }
+    .cmd-steps b { color: #fff; }
+    @media (max-width: 860px) {
+      .cmd-feat, .cmd-feat:nth-child(even) { grid-template-columns: 1fr; }
+      .cmd-feat:nth-child(even) .cmd-copy { order: 0; }
+      .cmd-plans { font-size: 13px; }
+      .cmd-plans th, .cmd-plans td { padding: 10px 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .cmd-shot { transform: none; transition: none; } }
+  </style>
+</head>
+<body class="home cmd">
+  <div class="cmd-grid-bg" aria-hidden="true"></div>
+
+  <header class="site"><div class="wrap">
+    <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
+    <nav class="site" aria-label="Main">
+      <a href="../">Hub</a>
+      <a href="#features">Features</a>
+      <a href="#plans">Plans</a>
+      <a href="#start">Get started</a>
+    </nav>
+  </div></header>
+
+  <main>
+    <section class="wrap cmd-hero" aria-labelledby="cmd-title">
+      <div>
+        <div class="u-kicker">A Sinciety app <b>·</b> New · Windows</div>
+        <h1 id="cmd-title" class="cmd-title"><small>Sinciety</small><span>COMMAND</span></h1>
+        <p class="u-statement">Your whole stream in one control centre: OBS, your PC's performance, your mics and speakers, the apps you stream with, setups you can switch in one click, and automations that handle the routine for you.</p>
+        <div class="actions">
+          <a class="btn cmd-btn" href="https://github.com/brownnahj30-commits/streammind-releases/releases?q=command-v&amp;expanded=true">Download for Windows</a>
+          <a class="btn ghost" href="#features">See what it does</a>
+        </div>
+        <div class="cmd-meta"><span><i></i>Free to download</span><span>Windows 10 &amp; 11</span><span>About 40–80 MB of RAM while it runs</span><span>Updates itself</span></div>
+      </div>
+      <figure class="cmd-shot" style="margin-inline:0"><img src="../assets/media/command/dash.jpg" alt="The COMMAND dashboard: stream status, quick controls, scenes, system graphs, quick launch, profiles and recent events" width="2000" height="1250" fetchpriority="high"><figcaption>Example data</figcaption></figure>
+    </section>
+
+    <section class="cmd-sec" id="features" aria-labelledby="feat-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>01</span> Features</div>
+        <h2 id="feat-h" class="u-title">Stop switching windows</h2>
+        <p class="u-lede">Everything you'd normally juggle across five programs, in one place that's easy to use mid-stream.</p>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">OBS control</span><h3>Run OBS without alt-tabbing</h3>
+            <p>COMMAND connects to OBS through its built-in WebSocket server and reconnects by itself if OBS restarts.</p>
+            <ul><li>Start and stop streaming and recording; pause recordings</li><li>Switch scenes, use studio mode, pick transitions</li><li>Show or hide sources, mute and mix audio with live meters</li><li>Bitrate, dropped frames and connection health while live</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/obs.jpg" alt="COMMAND's OBS page: scenes, live preview, sources, audio mixer and stream controls" loading="lazy" width="2000" height="1250"></div>
+        </div>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">System monitor</span><h3>Know your PC can take it</h3>
+            <p>CPU, GPU, RAM, VRAM, temperatures, network and disk, with graphs for the last 10 minutes and history for the last 24 hours. It only samples quickly while you're looking, so it doesn't steal frames from your game.</p>
+            <ul><li>Works with NVIDIA, AMD and Intel graphics</li><li>Warnings before memory or CPU runs out</li><li>See which apps are using the most</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/system.jpg" alt="COMMAND's System page with CPU, GPU, RAM, VRAM, network and disk graphs" loading="lazy" width="2000" height="1250"></div>
+        </div>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">Audio</span><h3>Every mic and speaker, one page</h3>
+            <p>See every microphone, headset and speaker Windows knows about, which ones are the defaults, and how loud each is right now.</p>
+            <ul><li>Volume and mute for each device</li><li>Live level meters</li><li>An instant alert if your mic unplugs mid-stream</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/audio.jpg" alt="COMMAND's Audio page listing microphones and speakers with levels" loading="lazy" width="2000" height="1250"></div>
+        </div>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">Launcher</span><h3>Open your whole setup in one click</h3>
+            <p>Add OBS, TikTok LIVE Studio, Streamlabs, Discord, Spotify, Voicemod, your browser and anything else. COMMAND finds the common ones for you.</p>
+            <ul><li>Launch groups open your apps in order</li><li>Open chosen apps whenever COMMAND starts</li><li>See which apps are running, and close them only when you say so</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/apps.jpg" alt="COMMAND's Launcher with app tiles and a launch group" loading="lazy" width="2000" height="1250"></div>
+        </div>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">Profiles</span><h3>Switch your whole setup safely</h3>
+            <p>Save a profile for Twitch, TikTok, multistreaming, podcasts or recording-only: your scene, transition, sources, OBS and Windows audio levels, and the apps to open.</p>
+            <ul><li>Shows exactly what will change before it changes</li><li>Asks first if viewers would see or hear the change while you're live</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/profile.jpg" alt="Switching a COMMAND profile while live, showing which changes will be on air" loading="lazy" width="2000" height="1250"></div>
+        </div>
+
+        <div class="cmd-feat">
+          <div class="cmd-copy"><span class="tag">Automations</span><h3>Let COMMAND do the routine stuff</h3>
+            <p>"When I go live, open Discord and CHAT." "When the stream ends, open my recordings." "If my mic disconnects while live, switch to BRB."</p>
+            <ul><li>Triggers from OBS, your devices, your PC and Clipciety</li><li>Conditions like "only while live" or "between 8 pm and 2 am"</li><li>Built-in actions only, with no scripts. Every run is logged.</li></ul></div>
+          <div class="cmd-pic"><img src="../assets/media/command/auto.jpg" alt="COMMAND's Automations page with automations and their run history" loading="lazy" width="2000" height="1250"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cmd-sec" aria-labelledby="eco-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>02</span> Better together</div>
+        <h2 id="eco-h" class="u-title">Built for the Sinciety apps</h2>
+        <p class="u-lede">COMMAND connects to the other Sinciety apps on your PC. Each one also works on its own.</p>
+        <div class="cmd-cards">
+          <div class="cmd-card"><b class="k">CLIPCIETY</b><h4>Clips</h4><p>See new clips as they're saved, and press Clip it from COMMAND to save the last moments from OBS's replay buffer.</p></div>
+          <div class="cmd-card"><b class="k">SINCIETY CHAT</b><h4>Chat</h4><p>Your Twitch, YouTube and Kick chat on the dashboard, plus alerts for cheers, subs and Super Chats.</p></div>
+          <div class="cmd-card"><b class="k">VOICIETY</b><h4>Voices</h4><p>Character text-to-speech and chat walkers run in Clipciety and switch on automatically when you go live.</p></div>
+          <div class="cmd-card"><b class="k">COMING SOON</b><h4>Sinciety PULSE</h4><p>Your text-to-speech queue, soundboard and voice activity in COMMAND, as soon as PULSE launches.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cmd-sec" id="plans" aria-labelledby="plans-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>03</span> Plans</div>
+        <h2 id="plans-h" class="u-title">Free to start</h2>
+        <p class="u-lede">COMMAND is free. One Sinciety subscription unlocks more in both COMMAND and Clipciety.</p>
+        <table class="cmd-plans">
+          <thead><tr><th></th><th>Free</th><th>Creator</th><th>Pro &amp; Studio</th></tr></thead>
+          <tbody>
+            <tr><td>OBS control, monitoring, audio, notifications</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Apps in the launcher</td><td>8</td><td>30</td><td>Unlimited</td></tr>
+            <tr><td>Profiles</td><td>2</td><td>10</td><td>Unlimited</td></tr>
+            <tr><td>Automations</td><td>3</td><td>15</td><td>Unlimited</td></tr>
+            <tr><td>Performance history</td><td>1 hour</td><td>24 hours</td><td>24 hours</td></tr>
+            <tr><td>Clip it from COMMAND</td><td>–</td><td>✓</td><td>✓</td></tr>
+          </tbody>
+        </table>
+        <div class="actions" style="margin-top:28px"><a class="btn cmd-btn" href="../clipciety/pricing.html">See pricing</a></div>
+        <p class="cmd-note">Already subscribed to Clipciety? Paste the same licence key into COMMAND → Settings.</p>
+      </div>
+    </section>
+
+    <section class="cmd-sec" id="start" aria-labelledby="start-h">
+      <div class="wrap">
+        <div class="u-eyebrow"><span>04</span> Get started</div>
+        <h2 id="start-h" class="u-title">Set up in two minutes</h2>
+        <ol class="cmd-steps">
+          <li><b>Download and run the installer.</b> It installs just for your Windows account, so no admin rights are needed, and keeps itself up to date.</li>
+          <li><b>Connect OBS.</b> In OBS 28 or newer, open <b>Tools → WebSocket Server Settings</b> and tick <b>Enable WebSocket server</b>. Click <b>Show Connect Info</b> and paste the password into COMMAND's OBS page.</li>
+          <li><b>Add your apps.</b> In COMMAND's Launcher, add the apps it found on your PC with one click, then group the ones you open every stream.</li>
+          <li><b>Optional: open Clipciety</b> to bring your chat, clips and voices into COMMAND.</li>
+        </ol>
+        <div class="actions" style="margin-top:30px"><a class="btn cmd-btn" href="https://github.com/brownnahj30-commits/streammind-releases/releases?q=command-v&amp;expanded=true">Download for Windows</a>
+          <a class="btn ghost" href="mailto:team.sinciety@gmail.com?subject=Sinciety%20COMMAND">Questions? Email us</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="u-footer">
+    <div class="u-footer-mark" aria-hidden="true">COMMAND</div>
+    <div class="wrap u-footer-grid">
+      <div>
+        <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
+        <p class="u-footer-tag">Sinciety COMMAND: the streamer's control centre.</p>
+        <a class="u-mail" href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a>
+      </div>
+      <nav aria-label="Products"><h4>Products</h4><a href="../clipciety/">Clipciety + CHAT</a><a href="./">Sinciety COMMAND</a><a href="../census/">DCUO Codex</a><a href="../tournaments/">Tournaments</a><a href="../sinciety-online/">Sinciety Online (in development)</a></nav>
+      <nav aria-label="Sinciety"><h4>Sinciety</h4><a href="../">Hub</a><a href="../#contact">Contact</a></nav>
+      <nav aria-label="Follow"><h4>Follow</h4><a href="https://www.tiktok.com/@expliry" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/expliry" target="_blank" rel="noopener">Instagram</a><a href="https://www.twitch.tv/expliry" target="_blank" rel="noopener">Twitch</a><a href="https://www.youtube.com/@expliry" target="_blank" rel="noopener">YouTube</a><a href="https://x.com/expliry" target="_blank" rel="noopener">X (Twitter)</a></nav>
+    </div>
+    <div class="wrap u-footer-base"><span>© 2026 Sinciety</span><span class="u-status-line"><i></i>COMMAND 0.1 available</span><a href="#" class="u-top">Back to top ↑</a></div>
+  </footer>
+
+  <script>document.querySelectorAll('.cmd-feat, .cmd-card, .u-title, .u-lede, .cmd-plans, .cmd-steps li').forEach((el) => el.classList.add('reveal'));</script>
+  <script src="../assets/lenis.min.js"></script>
+  <script src="../assets/site.js"></script>
+  <script src="../assets/sound.js"></script>
+  <script>
+    const h = document.querySelector('header.site');
+    addEventListener('scroll', () => h.classList.toggle('solid', scrollY > 80), { passive: true });
+    const shot = document.querySelector('.cmd-shot');
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { shot.classList.add('in'); o.disconnect(); } }, { threshold: 0.25 }).observe(shot);
+  </script>
+  <script src="../assets/cinema.js" defer></script>
+</body>
+</html>
