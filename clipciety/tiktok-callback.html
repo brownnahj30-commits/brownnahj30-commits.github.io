@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Connecting TikTok</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0b0b10; color: #eee;
+         font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; text-align: center; padding: 16px; }
+  a { color: #b8f34a; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="msg" style="font-size:22px">Finishing your TikTok sign-in…</h1>
+  <p id="sub">Hand-off back to Clipciety on this computer.</p>
+</main>
+<script>
+  // TikTok can't redirect to a local address, so it lands here and we forward the
+  // sign-in code to the Clipciety app running on this PC. Nothing is stored or sent elsewhere.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var port = (q.get('state') || '').split('.')[0];
+    var msg = document.getElementById('msg'), sub = document.getElementById('sub');
+    if (!/^\d{2,5}$/.test(port) || +port < 1024 || +port > 65535) {
+      msg.textContent = 'This sign-in link is not valid.';
+      sub.textContent = 'Start again from Clipciety: Settings → Connect TikTok.';
+      return;
+    }
+    var target = 'http://127.0.0.1:' + port + '/oauth/tiktok/callback' + location.search;
+    history.replaceState(null, '', location.pathname);
+    location.replace(target);
+    setTimeout(function () {
+      msg.textContent = 'Is Clipciety open?';
+      sub.innerHTML = 'Clipciety needs to be running to finish. <a id="retry">Try again</a>';
+      document.getElementById('retry').href = target;
+    }, 4000);
+  })();
+</script>
+</body>
+</html>
