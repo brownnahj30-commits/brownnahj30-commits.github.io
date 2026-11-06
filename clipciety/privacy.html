@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Clipciety Privacy Policy</title>
-  <meta name="description" content="How Clipciety by Sinciety handles your data.">
+  <title>Sinciety Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Sinciety apps: Clipciety, Sinciety COMMAND and Sinciety AI.">
   <link rel="icon" href="icon.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
   <link rel="stylesheet" href="../styles.css">
@@ -23,62 +23,78 @@
   <main class="wrap">
     <article class="legal">
       <h1>Privacy Policy</h1>
-      <p class="meta">Clipciety by Sinciety · Effective November 4, 2026</p>
+      <p class="meta">Sinciety apps · Effective November 6, 2026</p>
 
-      <p>This policy explains what data the Clipciety desktop app ("Clipciety", "the app") handles and where it goes. Clipciety is made by Sinciety ("we", "us"). In short: <strong>your recordings and clips stay on your computer</strong>, we do not run servers that collect your data, and nothing is posted to any platform unless you choose to post it.</p>
+      <p>This policy explains what data Sinciety's apps handle and where it goes: <b>Clipciety</b> (including Sinciety CHAT and Voiciety), <b>Sinciety COMMAND</b> and <b>Sinciety AI</b> (PULSE). In short: your recordings, clips, chat and PC data stay on your computer; our online services keep only what they need to run your plan, connect Kick, and answer Sinciety AI; nothing is posted or streamed unless you choose to; and we don't sell your data or use it for advertising.</p>
+      <p>Sinciety AI is being introduced in stages. The parts of this policy about it apply once you start using it.</p>
 
       <h2>1. Data that stays on your computer</h2>
-      <p>Clipciety stores the following only on your own PC, in the app's data folder (on Windows: <code>%APPDATA%\com.sinciety.clipciety</code>):</p>
+      <p>The apps store the following only on your own PC (on Windows, in <code>%APPDATA%\com.sinciety.clipciety</code>, COMMAND's data folder, and <code>%LOCALAPPDATA%\Sinciety</code>):</p>
       <ul>
-        <li>Your stream recordings' locations and the clips, thumbnails and vertical videos Clipciety creates from them.</li>
-        <li>Chat messages recorded during your streams, viewer counts sampled during your streams, and the highlights and statistics calculated from them.</li>
-        <li>Your settings, including your OBS connection details.</li>
-        <li>Sign-in tokens for platforms you connect, and any API keys you enter. These are stored encrypted.</li>
+        <li>Your recordings' locations and the clips, thumbnails and vertical videos Clipciety creates.</li>
+        <li>Chat messages, gifts and follows from your streams, viewer counts sampled while you're live, and the highlights and statistics calculated from them.</li>
+        <li>Your settings, scenes, alert rules, automations and multistream setup.</li>
+        <li>PC performance data COMMAND reads (processor, graphics, memory, disk, network use and temperatures). It's used to show you graphs and alerts and isn't sent to us.</li>
+        <li>Sign-in tokens for platforms you connect, stream keys, your licence key and any API keys you enter. Clipciety stores these encrypted; COMMAND keeps them in Windows Credential Manager.</li>
+        <li>Sinciety AI's memories and conversation history, in an encrypted file.</li>
       </ul>
-      <p>We cannot see or access this data. It stays on your computer until you delete it (see section 6).</p>
+      <p>The apps talk to each other on your PC only (Sinciety Link), using a private token, for example so COMMAND can use the platform sign-ins you already made in Clipciety.</p>
 
-      <h2>2. Data we collect</h2>
-      <p>Sinciety does not operate servers that receive your recordings, clips, chat or analytics. Clipciety does not include advertising or third-party analytics.</p>
-      <p><strong>Paid plans and creator codes.</strong> If you buy a paid plan, payment is handled by <a href="https://stripe.com/privacy">Stripe</a>, which processes your card and billing details under its own privacy policy. We never see or store your full card number. Our billing service (billing.sinciety.org) stores what's needed to run your subscription: your email address, Stripe customer and subscription IDs, your plan, its status and renewal date, and your license key. For creator codes we store the code, its plan, and a note of who it was given to. To keep your plan working, the app sends your license key to billing.sinciety.org about once a day to check its status. We use this information only to provide your plan, handle billing and support, and meet legal and tax obligations, and we don't sell it.</p>
-      <p>To check for updates, Clipciety downloads an update file and installers from GitHub, which is operated by GitHub, Inc. GitHub receives standard technical information such as your IP address when this happens, under <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a>. We do not receive information that identifies you from these checks.</p>
+      <h2>2. Our online services and what they keep</h2>
+      <div class="table-scroll"><table>
+        <tr><th>Service</th><th>What it receives and keeps</th><th>Why</th></tr>
+        <tr><td>Billing (billing.sinciety.org), with Stripe</td><td>Your email address, Stripe customer and subscription IDs, your plan, its status and renewal date, and your licence key. For creator codes: the code, its plan and who it was given to. The apps send your licence key here about once a day to check your plan. Stripe handles your card under its own privacy policy; we never see your full card number.</td><td>Running your plan, billing, support, and tax and legal obligations.</td></tr>
+        <tr><td>Kick relay (chat-relay.sinciety.org)</td><td>If you connect Kick: your Kick user ID and username, your Kick sign-in tokens (encrypted) and a scrambled (hashed) copy of the app's relay key. Your Kick chat passes through it to your app; it isn't stored.</td><td>Kick only delivers chat to a public web address and needs a server for sign-in, so the relay does this for your app. It also sends your messages and moderation actions to Kick and fetches your stream key for COMMAND.</td></tr>
+        <tr><td>Sinciety AI (ai.sinciety.org), with Anthropic</td><td>The text of your conversation with Sinciety AI, the memories and PC details it needs for that reply, and your licence key. It keeps your plan and monthly usage counts (number of requests and researches, and their cost) only, not your conversations.</td><td>Checking your plan and limits, and sending your request to Anthropic to write the reply.</td></tr>
+      </table></div>
+      <p><b>Anthropic.</b> Sinciety AI's replies are written by Anthropic's Claude models. Anthropic receives the text of each request and processes it under its <a href="https://www.anthropic.com/legal/commercial-terms">commercial terms</a> and <a href="https://www.anthropic.com/legal/privacy">privacy policy</a>. Under those terms, Anthropic doesn't train its models on our users' requests, and keeps them only for a limited time for safety and abuse monitoring. When Sinciety AI researches something, its web searches are run by Anthropic's search tool.</p>
+      <p><b>Updates.</b> To check for updates, the apps download an update file and installers from GitHub (and downloads.sinciety.org, which points there). GitHub receives standard technical information such as your IP address under its own privacy statement. We don't receive anything that identifies you from these checks.</p>
+      <p>The apps don't include advertising or third-party analytics.</p>
 
       <h2>3. Platforms you choose to connect</h2>
-      <p>You can connect accounts so Clipciety can work with them. Each connection uses that platform's official sign-in, asks for your permission, and can be disconnected in Clipciety (Integrations → Log out) or in the platform's own account settings at any time.</p>
+      <p>Each connection uses that platform's official sign-in, asks your permission, and can be disconnected in the app or in the platform's own account settings at any time.</p>
       <div class="table-scroll"><table>
-        <tr><th>Platform</th><th>What Clipciety accesses</th><th>What it's used for</th></tr>
-        <tr><td>TikTok LIVE (optional)</td><td>Public comments, gifts, likes and follows in your own TikTok LIVE, read using the @username you enter. No TikTok sign-in is used.</td><td>Showing your TikTok chat in Sinciety CHAT and reading it aloud with Voiciety while you're live. It's off until you turn it on.</td></tr>
-        <tr><td>YouTube (Google)</td><td>Your channel's basic information, and permission to upload videos.</td><td>Showing which channel you're posting to, and uploading the clips you choose as Shorts. Clipciety only uploads when you click Post.</td></tr>
-        <tr><td>Twitch</td><td>Chat messages in your channel while you're live, your current viewer count, and your follower total.</td><td>Finding the moments your audience reacted to, and showing your stream statistics. Chat is processed and stored on your computer.</td></tr>
-        <tr><td>OBS Studio</td><td>Your stream, recording and replay buffer status, on your own computer.</td><td>Starting live mode when you go live and saving clips from the replay buffer.</td></tr>
+        <tr><th>Platform</th><th>What the apps access</th><th>What it's used for</th></tr>
+        <tr><td>Twitch</td><td>Chat in your channel, your viewer and follower counts, permission to send chat messages and to delete messages, time out and ban users in your channel, create clips, and read your stream key.</td><td>Sinciety CHAT and Voiciety, finding the moments your audience reacted to, moderation you choose to do, and multistreaming in COMMAND without pasting your key.</td></tr>
+        <tr><td>YouTube (Google)</td><td>Your channel's basic information, your live broadcasts, live chat and stream key (read-only access), and permission to upload videos.</td><td>Showing your YouTube chat, multistreaming in COMMAND without pasting your key, and uploading the clips you choose as Shorts. Videos are only uploaded when you click Post.</td></tr>
+        <tr><td>Kick</td><td>Your user and channel details, chat, permission to send messages and moderate, and your stream key (through the Kick relay above).</td><td>Sinciety CHAT and Voiciety, moderation you choose to do, and multistreaming in COMMAND.</td></tr>
+        <tr><td>TikTok LIVE (optional)</td><td>Public comments, gifts, likes and follows in your own TikTok LIVE, read using the @username you enter. No TikTok sign-in is used.</td><td>Showing your TikTok chat in Sinciety CHAT and reading it aloud with Voiciety. It's off until you turn it on.</td></tr>
+        <tr><td>OBS Studio</td><td>Your scenes, sources, audio, and stream, recording and replay buffer status, on your own computer.</td><td>Controlling OBS from COMMAND, starting live mode when you go live, saving clips, and stream health alerts.</td></tr>
       </table></div>
-      <p>When Clipciety posts to YouTube, the video and the text you approved (title, caption, hashtags) are sent to that platform. From then on that content is handled under the platform's own terms and privacy policy.</p>
+      <p>When you post or stream to a platform, that content is handled under the platform's own terms and privacy policy. Clipciety's and COMMAND's use of information received from Google APIs follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
 
-      <h2>4. AI features</h2>
-      <p>Writing titles, captions and hashtags with AI is optional and only works if you enter your own Anthropic API key. When you use it, Clipciety sends Anthropic <strong>text only</strong>: the reasons a moment was detected, chat messages from around that moment, and a transcript of what was said in the clip if one exists. Your video is never sent. Anthropic handles this data under its own terms and privacy policy.</p>
-      <p>Automatic captions use speech recognition that runs on your computer. The speech model is downloaded once from Hugging Face; your audio is not sent anywhere.</p>
+      <h2>4. Voice, captions and AI writing</h2>
+      <ul>
+        <li><b>Automatic captions</b> and <b>Sinciety AI's listening</b> (wake word and speech-to-text) run on your computer. Your microphone audio is not sent to us or to Anthropic; only the words it hears after you talk to Sinciety AI are sent, as text. Speech models are downloaded once from Hugging Face.</li>
+        <li><b>Voiciety and PULSE's voice</b> are generated on your computer.</li>
+        <li><b>Clipciety's AI titles and captions</b> use your own Anthropic API key, if you enter one. Clipciety then sends Anthropic text only: why a moment was detected, nearby chat messages, and the clip's transcript if there is one. Your video is never sent.</li>
+      </ul>
 
       <h2>5. Data from TikTok</h2>
-      <p>Clipciety doesn't sign in to TikTok or post to it. Data it reads from your TikTok LIVE (public comments, gifts, likes and follows) is used only to show and read out your chat, is stored only on your computer, and is not sold, shared with other parties or used for advertising. Turning TikTok LIVE off in Clipciety stops it straight away.</p>
+      <p>The apps don't sign in to TikTok or post to it. Data read from your TikTok LIVE (public comments, gifts, likes and follows) is used only to show and read out your chat, is stored only on your computer, and is not sold, shared with other parties or used for advertising. Turning TikTok LIVE off stops it straight away.</p>
 
       <h2>6. Keeping and deleting your data</h2>
       <ul>
-        <li>Delete individual clips, or all skipped clips, in the app. Their files are removed from your computer. Your original stream recordings are never deleted by Clipciety.</li>
-        <li>Delete a broadcast in the app to remove its clips, chat and statistics.</li>
-        <li>Log out of a platform in Integrations to delete its stored sign-in. You can also revoke access in that platform's settings.</li>
-        <li>To close a paid plan, cancel it from Manage subscription. To have your billing record deleted (apart from what we must keep for tax and accounting), email us.</li>
-        <li>Uninstalling Clipciety removes the app. To remove all remaining data, also delete the data folder listed in section 1.</li>
+        <li>Delete clips and broadcasts (with their chat and statistics) in Clipciety. Your original recordings are never deleted by the apps.</li>
+        <li>Log out of a platform in the app to delete its stored sign-in. You can also revoke access in that platform's settings. Logging out of Kick also deletes your sign-in from the Kick relay.</li>
+        <li>View, edit and delete Sinciety AI's memories in its settings, and clear its conversation history at any time.</li>
+        <li>To close a paid plan, cancel it from Manage subscription. To have your billing record and Sinciety AI usage record deleted (apart from what we must keep for tax and accounting), email us.</li>
+        <li>Uninstalling an app removes it. To remove all remaining data, also delete the data folders listed in section 1.</li>
       </ul>
 
-      <h2>7. Children</h2>
-      <p>Clipciety is not intended for anyone under 13, or under the minimum age required by the platforms you connect, whichever is higher.</p>
+      <h2>7. Security</h2>
+      <p>Our services use encrypted connections (HTTPS). Sign-in tokens and keys are stored encrypted or in Windows Credential Manager, and are never put into AI requests or logs. No system is perfectly secure, so keep your licence key and PC account safe.</p>
 
-      <h2>8. Your rights</h2>
-      <p>Because your data is stored on your own computer, you can view, export and delete it directly. If you have a question or request about your data, contact us at the address below.</p>
+      <h2>8. Children</h2>
+      <p>The apps are not intended for anyone under 13, or under the minimum age required by the platforms you connect, whichever is higher. Sinciety AI is for people 18 and older. We don't knowingly collect data from children; if you think a child has given us data, email us and we'll delete it.</p>
 
-      <h2>9. Changes to this policy</h2>
-      <p>If we change this policy, we'll update this page and its effective date. If Clipciety starts collecting data in a new way, we'll explain it here before it happens.</p>
+      <h2>9. Your rights</h2>
+      <p>Most of your data is on your own computer, so you can view, export and delete it directly. For data our services hold (section 2), you can ask us to show, correct or delete it. Depending on where you live (for example in the EU, UK or California), you may have further rights, and you can complain to your data protection authority. We'll answer requests within 30 days.</p>
 
-      <h2>10. Contact</h2>
+      <h2>10. Changes to this policy</h2>
+      <p>If we change this policy, we'll update this page and its effective date. If an app starts collecting data in a new way, we'll explain it here before it happens.</p>
+
+      <h2>11. Contact</h2>
       <p>Sinciety · <a href="mailto:team.sinciety@gmail.com">team.sinciety@gmail.com</a></p>
     </article>
   </main>
