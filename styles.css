@@ -316,3 +316,8 @@ html:not(.js) .no-js-hint { display: block; }
   .specs th, .specs td { padding: 10px 6px; }
   .specs td:first-child { white-space: normal; }
 }
+
+/* "Windows warning?" help link under download buttons */
+.dl-help { margin-top: 10px; font-size: 13px; }
+.dl-help a { color: var(--dim); text-decoration: underline; text-underline-offset: 3px; }
+.dl-help a:hover { color: #fff; }

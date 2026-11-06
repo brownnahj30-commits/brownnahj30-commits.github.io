@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Installing Sinciety apps on Windows</title>
+  <meta name="description" content="Why Windows may show a warning when you install Clipciety or Sinciety COMMAND, and how to continue safely.">
+  <link rel="icon" href="clipciety/icon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .inst { max-width: 760px; margin: 0 auto; padding: 48px 0 80px; }
+    .inst h1 { font-size: clamp(30px, 5vw, 48px); margin-bottom: 10px; }
+    .inst .lede { color: var(--dim); font-size: 18px; max-width: 62ch; }
+    .inst h2 { font-size: 22px; margin: 44px 0 12px; }
+    .inst p, .inst li { color: #c9cbd8; line-height: 1.6; }
+    .inst ol.steps { counter-reset: s; list-style: none; padding: 0; display: grid; grid-template-columns: 1fr; gap: 26px; margin-top: 20px; }
+    .inst ol.steps > li { display: block; width: auto; max-width: none; }
+    .inst ol.steps > li { counter-increment: s; position: relative; padding-left: 52px; }
+    .inst ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+      display: grid; place-items: center; font: 700 16px var(--display, system-ui); color: #fff; background: linear-gradient(135deg, #7d4dff, #4f8cff); }
+    /* A drawing of Windows' SmartScreen dialog (not a screenshot) */
+    .ss { margin-top: 14px; max-width: 460px; background: #0f6cbd; color: #fff; border-radius: 6px; padding: 22px 24px 18px; font: 15px/1.45 "Segoe UI", system-ui, sans-serif; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+    .ss b { display: block; font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+    .ss .more { text-decoration: underline; display: inline-block; margin: 10px 0 18px; padding: 2px 4px; border-radius: 3px; outline: 3px solid #ffd84a; outline-offset: 2px; }
+    .ss .row { display: flex; justify-content: flex-end; gap: 8px; }
+    .ss .btn-w { border: 1px solid rgba(255,255,255,.75); padding: 5px 18px; border-radius: 3px; font-size: 14px; }
+    .ss .btn-w.hl { outline: 3px solid #ffd84a; outline-offset: 2px; }
+    .ss .meta { font-size: 14px; opacity: .92; margin: 4px 0 14px; }
+    .note { margin-top: 36px; padding: 18px 20px; border-radius: 14px; background: rgba(14,16,30,.6); border: 1px solid rgba(143,181,255,.15); }
+    .dl { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  </style>
+</head>
+<body data-cine="lite">
+  <header class="site"><div class="wrap">
+    <a class="brand" href="./"><i aria-hidden="true"></i>Sinciety</a>
+    <nav class="site" aria-label="Main">
+      <a href="./">Home</a>
+      <a href="clipciety/">Clipciety</a>
+      <a href="command/">COMMAND</a>
+    </nav>
+  </div></header>
+
+  <main class="wrap">
+    <article class="inst">
+      <h1>Installing on Windows</h1>
+      <p class="lede">When you open the Clipciety or Sinciety COMMAND installer, Windows may show a blue <b>"Windows protected your PC"</b> screen. That's normal for new apps, and here's how to continue.</p>
+
+      <h2>Why Windows shows it</h2>
+      <p>Windows SmartScreen warns about any program it hasn't seen many people download yet, especially from smaller studios like ours. It doesn't mean Windows found anything wrong with the app.
+        Sinciety apps are built from our own code by our own automated build, and they only accept updates that carry Sinciety's digital signature.
+        The warning goes away as more people install, and when the apps arrive in the Microsoft Store.</p>
+
+      <h2>How to install</h2>
+      <ol class="steps">
+        <li><b>Run the installer you downloaded.</b> If Windows shows the blue screen, click <b>More info</b>.
+          <div class="ss" role="img" aria-label="Drawing of the Windows protected your PC screen with More info highlighted">
+            <b>Windows protected your PC</b>
+            Microsoft Defender SmartScreen prevented an unrecognised app from starting. Running this app might put your PC at risk.<br>
+            <span class="more">More info</span>
+            <div class="row"><span class="btn-w">Don't run</span></div>
+          </div>
+        </li>
+        <li><b>Check it's ours, then click Run anyway.</b> The app name shows <b>Clipciety_…_x64-setup.exe</b> or <b>Sinciety COMMAND…setup.exe</b>.
+          <div class="ss" role="img" aria-label="Drawing of the same screen after More info, with Run anyway highlighted">
+            <b>Windows protected your PC</b>
+            <div class="meta">App: Clipciety_0.8.20_x64-setup.exe<br>Publisher: Unknown publisher</div>
+            <div class="row"><span class="btn-w hl">Run anyway</span><span class="btn-w">Don't run</span></div>
+          </div>
+        </li>
+        <li><b>That's it.</b> The installer finishes in a few seconds, and the app keeps itself up to date from then on, so you only see this once.</li>
+      </ol>
+
+      <div class="note">
+        <p><b>Only install from sinciety.org.</b> Our download links always go through <b>downloads.sinciety.org</b>. If you got an installer anywhere else, delete it and download it again from here.</p>
+        <p style="margin-top:10px">Questions? Email <a href="mailto:team.sinciety@gmail.com?subject=Installing%20Sinciety%20apps">team.sinciety@gmail.com</a>.</p>
+      </div>
+
+      <div class="dl">
+        <a class="btn" href="https://downloads.sinciety.org/clipciety">Download Clipciety</a>
+        <a class="btn ghost" href="https://downloads.sinciety.org/command">Download Sinciety COMMAND</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site"><div class="wrap">
+    <span>© 2026 Sinciety</span>
+    <span><a href="clipciety/terms.html">Terms of Service</a> · <a href="clipciety/privacy.html">Privacy Policy</a></span>
+  </div></footer>
+  <script src="assets/cinema.js" defer></script>
+</body>
+</html>
