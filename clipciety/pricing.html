@@ -37,8 +37,24 @@
     @media (max-width: 1000px) { .p-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .p-grid { grid-template-columns: 1fr; } }
   </style>
+<style>
+  .sale-on{display:none!important}
+  html.sale-live .sale-on{display:revert!important}
+  html.sale-live a.sale-bar{display:block!important}
+  html.sale-live .p-price{font-size:34px;white-space:nowrap}
+  html.sale-live body{padding-bottom:64px}
+  html.sale-live .sound-toggle{bottom:60px}
+  html.sale-live .sale-off{display:none!important}
+  .sale-bar{position:fixed;left:0;right:0;bottom:0;z-index:999;display:block;box-shadow:0 -8px 30px rgba(0,0,0,.4);text-align:center;padding:9px 16px;font:600 14px/1.4 system-ui,sans-serif;color:#fff;text-decoration:none;
+    background:linear-gradient(90deg,#7d4dff,#4f8cff)}
+  .sale-bar b{font-weight:800}
+  .was{color:#8a8ca3;font-size:.55em;font-weight:600;margin-right:6px}
+  .sale-tag{display:inline-block;white-space:nowrap;margin:8px 0 2px;padding:3px 10px;border-radius:999px;font:700 12px/1.4 system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,#7d4dff,#4f8cff)}
+</style>
+<script>try{if(Date.now()<Date.parse("2026-12-01T08:00:00Z"))document.documentElement.classList.add("sale-live")}catch(e){}</script>
 </head>
 <body>
+  <a class="sale-bar sale-on" href="#creator"><b>November sale:</b> 30% off your first month of any Clipciety plan, including Sinciety COMMAND Premium. Ends Nov 30 →</a>
   <canvas id="scene3d" aria-hidden="true"></canvas>
   <header class="site"><div class="wrap">
     <a class="brand" href="../"><i aria-hidden="true"></i>Sinciety</a>
@@ -67,24 +83,27 @@
       </article>
       <article class="glass p-card reveal" id="creator" data-tilt="4">
         <h2>Creator</h2>
-        <div class="p-price">$9.99<small>/ month</small></div>
+        <div class="p-price"><span class="sale-on"><s class="was">$9.99</s>$6.99</span><span class="sale-off">$9.99</span><small>/ month</small></div>
+        <div class="sale-on"><span class="sale-tag">30% off first month · ends Nov 30</span></div>
         <ul><li>30 hours processed / month</li><li>20 clips per stream</li><li>60 AI runs / month</li><li>Full Voiciety cast: 40 voices + all 18 legend walkers</li><li>Sinciety CHAT: 2 platforms at once, 25 blocked terms, all overlay themes + theme editor, auto-moderation</li><li>Sinciety COMMAND Plus: 30 apps, 10 profiles, 15 automations, 24-hour history, Clip it from COMMAND</li><li>Everything in Free</li></ul>
         <a class="btn" href="https://billing.sinciety.org/checkout?plan=creator">Start 7-day free trial</a>
       </article>
       <article class="glass p-card p-pop reveal" id="pro" data-tilt="4">
         <h2>Pro</h2>
-        <div class="p-price">$19.99<small>/ month</small></div>
+        <div class="p-price"><span class="sale-on"><s class="was">$19.99</s>$13.99</span><span class="sale-off">$19.99</span><small>/ month</small></div>
+        <div class="sale-on"><span class="sale-tag">30% off first month · ends Nov 30</span></div>
         <ul><li>80 hours processed / month</li><li>40 clips per stream</li><li>200 AI runs / month</li><li>Full Voiciety cast: 40 voices + all 18 legend walkers</li><li>Sinciety CHAT: every platform, unlimited rules</li><li><b>Sinciety COMMAND Premium included</b>: unlimited apps, profiles and automations, 24-hour history, Clip it from COMMAND</li><li>Everything in Free</li></ul>
         <a class="btn" href="https://billing.sinciety.org/checkout?plan=pro">Start 7-day free trial</a>
       </article>
       <article class="glass p-card reveal" id="studio" data-tilt="4">
         <h2>Studio</h2>
-        <div class="p-price">$39.99<small>/ month</small></div>
+        <div class="p-price"><span class="sale-on"><s class="was">$39.99</s>$27.99</span><span class="sale-off">$39.99</span><small>/ month</small></div>
+        <div class="sale-on"><span class="sale-tag">30% off first month · ends Nov 30</span></div>
         <ul><li>200 hours processed / month</li><li>60 clips per stream</li><li>600 AI runs / month</li><li>Full Voiciety cast: 40 voices + all 18 legend walkers</li><li>Sinciety CHAT: every platform, unlimited rules</li><li><b>Sinciety COMMAND Premium included</b>: unlimited apps, profiles and automations, 24-hour history, Clip it from COMMAND</li><li>Everything in Free</li></ul>
         <a class="btn" href="https://billing.sinciety.org/checkout?plan=studio">Start 7-day free trial</a>
       </article>
     </div>
-    <p class="p-note reveal">Prices in USD. Taxes may apply. Secure checkout by Stripe. You won't be charged until your trial ends, and you can cancel before then.</p>
+    <p class="p-note reveal">Prices in USD. Taxes may apply. Secure checkout by Stripe. You won't be charged until your trial ends, and you can cancel before then.<span class="sale-on"> November sale: 30% off is applied automatically at checkout to your first paid month for new subscriptions started by November 30; after that, the regular monthly price applies.</span></p>
 
 
     <section class="glass p-code reveal" id="command-premium" style="display:block">

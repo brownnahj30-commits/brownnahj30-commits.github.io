@@ -16,8 +16,24 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="assets/universe.css">
   <link rel="stylesheet" href="assets/hub.css">
+<style>
+  .sale-on{display:none!important}
+  html.sale-live .sale-on{display:revert!important}
+  html.sale-live a.sale-bar{display:block!important}
+  html.sale-live .p-price{font-size:34px;white-space:nowrap}
+  html.sale-live body{padding-bottom:64px}
+  html.sale-live .sound-toggle{bottom:60px}
+  html.sale-live .sale-off{display:none!important}
+  .sale-bar{position:fixed;left:0;right:0;bottom:0;z-index:999;display:block;box-shadow:0 -8px 30px rgba(0,0,0,.4);text-align:center;padding:9px 16px;font:600 14px/1.4 system-ui,sans-serif;color:#fff;text-decoration:none;
+    background:linear-gradient(90deg,#7d4dff,#4f8cff)}
+  .sale-bar b{font-weight:800}
+  .was{color:#8a8ca3;font-size:.55em;font-weight:600;margin-right:6px}
+  .sale-tag{display:inline-block;white-space:nowrap;margin:8px 0 2px;padding:3px 10px;border-radius:999px;font:700 12px/1.4 system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,#7d4dff,#4f8cff)}
+</style>
+<script>try{if(Date.now()<Date.parse("2026-12-01T08:00:00Z"))document.documentElement.classList.add("sale-live")}catch(e){}</script>
 </head>
 <body class="home hub">
+  <a class="sale-bar sale-on" href="clipciety/pricing.html"><b>November sale:</b> 30% off your first month of any Clipciety plan, including Sinciety COMMAND Premium. Ends Nov 30 →</a>
   <canvas id="scene3d" aria-hidden="true"></canvas>
   <div id="intro" aria-hidden="true"><div class="intro-word">Sinciety</div><div class="intro-sub">One studio · Many worlds</div></div>
 
