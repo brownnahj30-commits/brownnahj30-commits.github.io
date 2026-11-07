@@ -64,6 +64,13 @@
     .says div { padding: 12px 16px; border-radius: 12px; background: #0b1726; border: 1px solid #16324a; color: #d5e6f5; }
     .says b { color: var(--cyan); }
     ul.req { color: #aab6cc; line-height: 1.8; }
+    .spec-wrap { overflow-x: auto; margin: 18px 0 24px; border: 1px solid #ffffff14; border-radius: 14px; }
+    table.spec { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14px; }
+    table.spec th, table.spec td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #ffffff10; vertical-align: top; }
+    table.spec thead th { font: 600 11px var(--mono, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); background: #0b1220; }
+    table.spec tbody th { color: #fff; white-space: nowrap; }
+    table.spec td { color: #b9c6dd; }
+    table.spec tr:last-child th, table.spec tr:last-child td { border-bottom: 0; }
   </style>
 </head>
 <body>
@@ -162,12 +169,24 @@
     <section class="ai-sec" style="padding-top:0">
       <div class="wrap">
         <h2>What you need</h2>
+        <p class="sub">Sinciety AI itself is light. Only the optional offline brain needs real hardware, and Auto picks the right preset for your PC.</p>
+        <div class="spec-wrap"><table class="spec">
+          <thead><tr><th></th><th>Processor</th><th>Memory (RAM)</th><th>Graphics card</th><th>Disk space</th></tr></thead>
+          <tbody>
+            <tr><th>Minimum</th><td>Any 64-bit 4-core (Intel or AMD) from about 2013 on, with AVX2</td><td>8 GB</td><td>Not needed</td><td>About 300 MB (app + voice)</td></tr>
+            <tr><th>Recommended</th><td>6 cores or more</td><td>16 GB</td><td>Any, for COMMAND Studio's hardware encoding</td><td>About 300 MB</td></tr>
+            <tr><th>Offline: Light</th><td>4 cores</td><td>8 GB (uses about 1.5 GB)</td><td>Not needed</td><td>+1 GB</td></tr>
+            <tr><th>Offline: Balanced</th><td>6 cores</td><td>16 GB, or use a graphics card</td><td>4 GB+ VRAM (optional)</td><td>+2 GB</td></tr>
+            <tr><th>Offline: Performance</th><td>6 cores</td><td>16 GB</td><td>6–8 GB+ VRAM, e.g. RTX 2060 / RX 6600 or better (NVIDIA, AMD or Intel Arc)</td><td>+4.7 GB</td></tr>
+          </tbody>
+        </table></div>
         <ul class="req">
-          <li>Windows 10 (22H2) or Windows 11, 64-bit, with 8 GB of RAM or more</li>
+          <li>Windows 10 (22H2) or Windows 11, 64-bit, and an internet connection for the cloud brain, updates and the first downloads</li>
           <li>Sinciety COMMAND running, for OBS and audio control (free)</li>
           <li>Voice: a one-time 142 MB download; about 0.3 GB of RAM while you talk, and none while you don't</li>
           <li>AI conversation: a Sinciety plan</li>
-          <li>Offline brain (optional): Light runs on any 4-core PC with 8 GB RAM (1 GB download); Balanced wants 16 GB RAM or a 4 GB+ graphics card (2 GB); Performance wants a 6–8 GB graphics card such as an RTX 2060 or RX 6600 (4.7 GB)</li>
+          <li>Offline brain (optional): works without internet once downloaded. It runs on your graphics card when there's room, otherwise on the processor and RAM, and pauses itself if your PC gets too hot or full. Speed depends on your hardware: a graphics card is much faster than the processor alone.</li>
+          <li>Going live without OBS (COMMAND Studio): a graphics card with a hardware encoder (NVIDIA NVENC, AMD AMF or Intel Quick Sync) is recommended; it falls back to the processor without one</li>
           <li class="fine">Offline brain: engine llama.cpp (MIT); models Qwen2.5 (Apache 2.0) and Llama 3.2 (Built with Llama). Cloud replies currently use Meta Llama on Cloudflare Workers AI.</li>
           <li>Sinciety AI is for people 18 and older. See the <a href="../clipciety/terms.html">Terms</a> and <a href="../clipciety/privacy.html">Privacy Policy</a>.</li>
         </ul>
